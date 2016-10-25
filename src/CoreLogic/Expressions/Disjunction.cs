@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using IntelligentSystemsLabs.Models.Classes;
+using CoreLogic.Classes;
 
-namespace IntelligentSystemsLabs.Models.Expressions
+namespace CoreLogic.Expressions
 {
-	public class Conjunction : BinaryOperation
-	{
-        public Conjunction(Expression left, Expression right) : base(left, right) { }
+    public class Disjunction : BinaryOperation
+    {
+        public Disjunction(Expression left, Expression right) : base(left, right) { }
 
         public override double Evaluate(IDictionary<Class, double> membershipValues)
         {
             var leftValue = LeftArgument.Evaluate(membershipValues);
             var rightValue = RightArgument.Evaluate(membershipValues);
 
-            return Math.Min(leftValue, rightValue);
+            return Math.Max(leftValue, rightValue);
         }
     }
 }
