@@ -155,7 +155,7 @@ namespace ConsoleApplication
             if (continueExecution && cmdArguments.OutputFileName == null)
             {
                 Console.WriteLine(jsonSolution);
-                Console.Error.WriteLine();
+                Console.WriteLine();
             }
 
             return continueExecution ? 0 : -1;
