@@ -6,12 +6,13 @@
   - Node.js;
   - .NET CLI(http://get.asp.net)
 
-####2. Install npm packages globally:
+####1. Restore NuGet packages: dotnet restore
+####1. Install npm packages globally:
   - npm install -g typescript
   - npm install -g typings
   - npm install -g webpack
 
-####3. Install all packages: npm install
-####4. Run application:
+####1. Install all packages: npm install
+####1. Run application:
   - webpack
   - dotnet run
