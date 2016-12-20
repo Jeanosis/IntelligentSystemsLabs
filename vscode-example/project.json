@@ -42,6 +42,10 @@
   },
 
   "tools": {
+    "Microsoft.DotNet.Watcher.Tools": {
+      "version": "1.0.0-*",
+      "imports": "portable-net451+win8"
+    },
     "Microsoft.AspNetCore.Razor.Tools": {
       "version": "1.0.0-preview2-final",
       "imports": "portable-net45+win8+dnxcore50"
