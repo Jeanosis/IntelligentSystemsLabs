@@ -17,6 +17,7 @@ export class PersonService {
 
     protected extractArray(res: Response, showProgress: boolean = true) {
         let data = res.json();
+        console.log(data);
         return data || [];
     }
 

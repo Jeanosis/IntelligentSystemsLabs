@@ -8,6 +8,7 @@ var gulp = require("gulp"),
     uglify = require("gulp-uglify");
 
 var webroot = "./wwwroot/";
+var angular = "./node_modules/@angular/";
 
 var paths = {
     js: webroot + "js/**/*.js",
@@ -15,8 +16,32 @@ var paths = {
     css: webroot + "css/**/*.css",
     minCss: webroot + "css/**/*.min.css",
     concatJsDest: webroot + "js/site.min.js",
-    concatCssDest: webroot + "css/site.min.css"
+    concatCssDest: webroot + "css/site.min.css",
+    libs: {
+        angular: [
+            angular + "core/bundles/core.umd.js",
+            angular + "common/bundles/common.umd.js",
+            angular + "compiler/bundles/compiler.umd.js",
+            angular + "platform-browser/bundles/platform-browser.umd.js",
+            angular + "platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js",
+            angular + "http/bundles/http.umd.js",
+            angular + "router/bundles/router.umd.js",
+            angular + "forms/bundles/forms.umd.js"
+        ],
+        rxjs: "node_modules/rxjs/**/*.js",
+        others: [
+            "node_modules/zone.js/dist/zone.js",
+            "node_modules/reflect-metadata/Reflect.js",
+            "node_modules/systemjs/dist/system.src.js"
+        ]
+    }
 };
+
+gulp.task("lib", function() {
+    gulp.src(paths.libs.angular).pipe(gulp.dest(webroot + "/lib/@angular"));
+    gulp.src(paths.libs.rxjs).pipe(gulp.dest(webroot + "/lib/rxjs"));
+    gulp.src(paths.libs.others).pipe(gulp.dest(webroot + "/lib/"));
+});
 
 gulp.task("clean:js", function (cb) {
     rimraf(paths.concatJsDest, cb);

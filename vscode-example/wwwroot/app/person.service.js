@@ -25,6 +25,7 @@ var PersonService = (function () {
     PersonService.prototype.extractArray = function (res, showProgress) {
         if (showProgress === void 0) { showProgress = true; }
         var data = res.json();
+        console.log(data);
         return data || [];
     };
     PersonService.prototype.handleErrorPromise = function (error) {

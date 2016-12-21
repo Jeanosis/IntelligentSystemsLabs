@@ -34,7 +34,7 @@ var AppComponent = (function (_super) {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "\n    <h1>My First Angular 2 App</h1>\n    <ul>\n    <li *ngFor=\"let person of persons\">\n    <strong></strong><br>\n    from: <br>\n    date of birth: \n    </li>\n    </ul>\n    ",
+        template: "\n    <h1>My First Angular 2 App 123</h1>\n    <ul>\n    <li *ngFor=\"let person of persons\">\n    <strong>{{person.name}}</strong><br>\n    from: {{person.city}}<br>\n    date of birth: {{person.dob | date: 'dd/MM/yyyy'}}\n    </li>\n    </ul>\n    ",
         providers: [
             person_service_1.PersonService
         ]
