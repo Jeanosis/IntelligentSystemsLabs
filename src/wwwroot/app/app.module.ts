@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FirstLabModule } from './first-lab/first-lab.module';
 
 import { AppComponent } from './app.component';
-import { PersonService } from './person.service';
+/*import { PersonService } from './person.service';*/
 
 @NgModule({
     imports: [
@@ -18,13 +18,13 @@ import { PersonService } from './person.service';
         FirstLabModule
     ],
     declarations: [AppComponent],
-    providers: [
+    /*providers: [
         PersonService/*,
         {
             provide: APP_BASE_HREF,
             useValue: '<%= APP_BASE %>'
-        }*/
-    ],
+        }
+    ],*/
     bootstrap: [AppComponent],
 })
 export class AppModule { }

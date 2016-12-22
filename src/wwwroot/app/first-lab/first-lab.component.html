@@ -1,3 +1,9 @@
 <h3>This is firs lab component!</h3>
-<p>Hey ho!</p>
+<ul>
+    <li *ngFor="let person of persons">
+        <strong>{{person.name}}</strong><br>
+        from: {{person.city}}<br>
+        date of birth: {{person.dob | date: 'dd/MM/yyyy'}}
+    </li>
+</ul>
 <button type="button" class="btn btn-primary">Primary</button>

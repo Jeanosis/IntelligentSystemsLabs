@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FirstLabRoutingModule } from './first-lab-routing.module';
 
-import { FirstLabComponent }   from './first-lab.component';
+import { FirstLabComponent } from './first-lab.component';
+import { PersonService } from './person.service';
 
 @NgModule({
-    imports: [FirstLabRoutingModule],
+    imports: [
+        CommonModule,
+        FirstLabRoutingModule
+    ],
     exports: [FirstLabComponent],
-    declarations: [FirstLabComponent]
+    declarations: [FirstLabComponent],
+    providers: [PersonService]
 })
 export class FirstLabModule { }

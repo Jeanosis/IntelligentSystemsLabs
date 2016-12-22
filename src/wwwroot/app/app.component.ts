@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { PersonService, Person } from './person.service';
+/*import { PersonService, Person } from './person.service';*/
 
 @Component({
     selector: 'my-app',
-    templateUrl: './app/app.component.html',
+    templateUrl: './app/app.component.html'/*,
     providers: [
         PersonService
-    ]
+    ]*/
 })
 
-export class AppComponent extends OnInit {
+export class AppComponent { };/*extends OnInit {
 
     constructor(private _service: PersonService) {
         super();
@@ -22,4 +22,4 @@ export class AppComponent extends OnInit {
     }
 
     persons: Person[] = [];
-}
+}*/

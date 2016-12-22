@@ -1,16 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PersonService, Person } from './person.service';
 
 @Component({
     moduleId: module.id,
     selector: 'first-lab',
-    templateUrl: 'first-lab.component.html'
+    templateUrl: 'first-lab.component.html',
+    providers: [PersonService]
 })
 
-export class FirstLabComponent implements OnInit {
-    constructor(private router: Router) { }
+export class FirstLabComponent extends OnInit {
 
-    ngOnInit():void {
-        console.log('first lab!');
+    constructor(private _service: PersonService) {
+        super();
     }
+
+    ngOnInit() {
+        this._service.loadData().then(data => {
+            this.persons = data;
+        });
+    }
+
+    persons: Person[] = [];
 }
