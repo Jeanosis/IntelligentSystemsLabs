@@ -1,0 +1,25 @@
+﻿using System;
+using System.Linq;
+using Libraries.FuzzyLogicInference.Classes;
+using System.Collections.Generic;
+
+namespace Libraries.FuzzyLogicInference.Expressions
+{
+	public abstract class BinaryOperation : Expression
+	{
+        public Expression LeftArgument { get; private set; }
+        public Expression RightArgument { get; private set; }
+
+        public override IEnumerable<Class> ReferencedClasses
+        {
+            get { return LeftArgument.ReferencedClasses.Union(RightArgument.ReferencedClasses); }
+        }
+
+        public BinaryOperation(Expression left, Expression right)
+		{
+            LeftArgument = left;
+            RightArgument = right;
+		}
+	}
+}
+

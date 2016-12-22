@@ -1,5 +1,5 @@
 /**
- * @license Angular v2.4.0
+ * @license Angular v2.4.1
  * (c) 2010-2016 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -1417,7 +1417,7 @@
    * @security Tread carefully! Interacting with the DOM directly is dangerous and
    * can introduce XSS risks.
    */
-  /* tslint:disable:requireParameterType */
+  /* tslint:disable:requireParameterType no-console */
   var BrowserDomAdapter = (function (_super) {
       __extends(BrowserDomAdapter, _super);
       function BrowserDomAdapter() {
@@ -1468,7 +1468,6 @@
                   console.error(error);
               }
               else {
-                  // tslint:disable-next-line:no-console
                   console.log(error);
               }
           }
@@ -1479,7 +1478,6 @@
        */
       BrowserDomAdapter.prototype.log = function (error) {
           if (window.console) {
-              // tslint:disable-next-line:no-console
               window.console.log && window.console.log(error);
           }
       };
@@ -3176,7 +3174,12 @@
        */
       DomRenderer.prototype.animate = function (element, startingStyles, keyframes, duration, delay, easing, previousPlayers) {
           if (previousPlayers === void 0) { previousPlayers = []; }
-          return this._animationDriver.animate(element, startingStyles, keyframes, duration, delay, easing, previousPlayers);
+          try {
+              return this._animationDriver.animate(element, startingStyles, keyframes, duration, delay, easing, previousPlayers);
+          }
+          catch (e) {
+              return new NoOpAnimationPlayer();
+          }
       };
       return DomRenderer;
   }());
@@ -4658,7 +4661,7 @@
   /**
    * @stable
    */
-  var /** @type {?} */ VERSION = new core.Version('2.4.0');
+  var /** @type {?} */ VERSION = new core.Version('2.4.1');
 
   exports.BrowserModule = BrowserModule;
   exports.platformBrowser = platformBrowser;
