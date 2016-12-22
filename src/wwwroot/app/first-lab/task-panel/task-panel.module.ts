@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+/*import { NgModule } from '@angular/core';
 
 import { TaskPanelComponent }   from './task-panel.component';
 
@@ -8,4 +8,4 @@ import { TaskPanelComponent }   from './task-panel.component';
     declarations: [TaskPanelComponent],
     providers: [],
 })
-export class TaskPanelModule { }
+export class TaskPanelModule { }*/

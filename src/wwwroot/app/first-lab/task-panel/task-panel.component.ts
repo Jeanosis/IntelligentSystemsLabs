@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 
 @Component({
     moduleId: module.id,
@@ -13,4 +13,4 @@ export class TaskPanelComponent implements OnInit {
     ngOnInit() {
         
     }
-}
+}*/
