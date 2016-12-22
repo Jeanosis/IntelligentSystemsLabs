@@ -5,13 +5,14 @@ import { Router } from '@angular/router';
 @Component({
     moduleId: module.id,
     selector: 'first-lab',
-    templateUrl: './first-lab.component.html'/*,
+    templateUrl: './first-lab.component.html',
+    styleUrls: ['./first-lab.component.css']/*,
     providers: [PersonService]*/
 })
 
 export class FirstLabComponent extends OnInit {
 
-    constructor() {
+    constructor(private router: Router) {
         super();
     }
 
@@ -20,6 +21,6 @@ export class FirstLabComponent extends OnInit {
     }
 
     setAlert(): void {
-        alert('Hey ho!');
+        alert(JSON.stringify(this.router.routerState.root.url));
     }
 }

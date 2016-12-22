@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { FirstLabModule } from './first-lab/first-lab.module';
+import { AppToolbarModule } from './app-toolbar/app-toolbar.module';
 
 import { AppComponent } from './app.component';
 /*import { PersonService } from './person.service';*/
@@ -15,7 +16,8 @@ import { AppComponent } from './app.component';
         HttpModule,
         FormsModule,
         AppRoutingModule,
-        FirstLabModule
+        FirstLabModule,
+        AppToolbarModule
     ],
     declarations: [AppComponent],
     /*providers: [
