@@ -5,7 +5,8 @@ var gulp = require("gulp"),
     rimraf = require("rimraf"),
     concat = require("gulp-concat"),
     cssmin = require("gulp-cssmin"),
-    uglify = require("gulp-uglify");
+    uglify = require("gulp-uglify"),
+    del = require('del');
 
 var webroot = "./wwwroot/";
 var angular = "./node_modules/@angular/";
@@ -17,6 +18,10 @@ var paths = {
     minCss: webroot + "css/**/*.min.css",
     concatJsDest: webroot + "js/site.min.js",
     concatCssDest: webroot + "css/site.min.css",
+    appScripts: [
+        webroot + "app/**/*.js",
+        webroot + "app/**/*.map"
+    ],
     libs: {
         angular: [
             angular + "core/bundles/core.umd.js",
@@ -41,6 +46,10 @@ gulp.task("lib", function() {
     gulp.src(paths.libs.angular).pipe(gulp.dest(webroot + "/lib/@angular"));
     gulp.src(paths.libs.rxjs).pipe(gulp.dest(webroot + "/lib/rxjs"));
     gulp.src(paths.libs.others).pipe(gulp.dest(webroot + "/lib/"));
+});
+
+gulp.task("clean:app_scripts", function () {
+    return del(paths.appScripts);
 });
 
 gulp.task("clean:js", function (cb) {

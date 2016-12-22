@@ -1,6 +1,12 @@
+/*.container {
+    border: 2px solid green !important;
+}
+.container > first-lab {
+    border: 2px solid blue;
+}*/
+
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding: 0;
 }
 
 /* Wrapping element */
