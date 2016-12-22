@@ -1,16 +1,23 @@
-/*import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PersonService, Person } from './person.service';
 
 @Component({
     moduleId: module.id,
     selector: 'task-panel',
-    templateUrl: './app/task-panel.component.html'
+    templateUrl: './task-panel.component.html',
+    providers: [PersonService]
 })
-export class TaskPanelComponent implements OnInit {
-    constructor() {
+export class TaskPanelComponent extends OnInit {
+
+    constructor(private _service: PersonService) {
         super();
     }
 
     ngOnInit() {
-        
+        this._service.loadData().then(data => {
+            this.persons = data;
+        });
     }
-}*/
+
+    persons: Person[] = [];
+}
