@@ -3,7 +3,7 @@
         paths: {
             // paths serve as alias
             'npm:': 'node_modules/',
-            'lib:': 'js/lib/'
+            'lib:': 'lib/'
         },
         // map tells the System loader where to look for things
         map: {
