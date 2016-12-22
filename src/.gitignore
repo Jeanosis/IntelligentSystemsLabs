@@ -3,6 +3,8 @@
 
 node_modules/
 typings/
+wwwroot/main.js
+wwwroot/main.js.map
 wwwroot/app/**.js
 wwwroot/app/**.js.map
 wwwroot/lib/
