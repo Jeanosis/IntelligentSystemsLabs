@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { PersonService, Person } from './person.service';
 
 @Component({
@@ -9,14 +11,18 @@ import { PersonService, Person } from './person.service';
 })
 export class TaskPanelComponent extends OnInit {
 
-    constructor(private _service: PersonService) {
+    constructor(private _service: PersonService, private router: Router, private r:ActivatedRoute) {
         super();
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this._service.loadData().then(data => {
             this.persons = data;
         });
+    }
+
+    goToSolution(): void {
+        this.router.navigate(['../solution'], { relativeTo: this.r });
     }
 
     persons: Person[] = [];

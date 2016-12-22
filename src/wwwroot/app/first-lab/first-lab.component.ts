@@ -5,21 +5,21 @@ import { Router } from '@angular/router';
 @Component({
     moduleId: module.id,
     selector: 'first-lab',
-    templateUrl: 'first-lab.component.html'/*,
+    templateUrl: './first-lab.component.html'/*,
     providers: [PersonService]*/
 })
 
-export class FirstLabComponent { }/*extends OnInit {
+export class FirstLabComponent extends OnInit {
 
-    constructor(private _service: PersonService) {
+    constructor() {
         super();
     }
 
-    ngOnInit() {
-        this._service.loadData().then(data => {
-            this.persons = data;
-        });
+    ngOnInit(): void {
+        console.log('First lab initiated!');
     }
 
-    persons: Person[] = [];
-}*/
+    setAlert(): void {
+        alert('Hey ho!');
+    }
+}
