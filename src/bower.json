@@ -2,7 +2,7 @@
   "name": "is_labs",
   "private": true,
   "dependencies": {
-    "bootstrap": "latest",
+    "bootstrap": "v4.0.0-alpha.5",
     "jquery": "latest",
     "jquery-validation": "latest",
     "jquery-validation-unobtrusive": "latest"
