@@ -1,5 +1,5 @@
 /**
- * @license Angular v2.4.0
+ * @license Angular v2.4.1
  * (c) 2010-2016 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -12,7 +12,7 @@
   /**
    * @stable
    */
-  var /** @type {?} */ VERSION = new _angular_core.Version('2.4.0');
+  var /** @type {?} */ VERSION = new _angular_core.Version('2.4.1');
 
   /**
    * @license
@@ -10428,6 +10428,13 @@
       return ElementSchemaRegistry;
   }());
 
+  /**
+   * @license
+   * Copyright Google Inc. All Rights Reserved.
+   *
+   * Use of this source code is governed by an MIT-style license that can be
+   * found in the LICENSE file at https://angular.io/license
+   */
   var StyleWithImports = (function () {
       /**
        * @param {?} style
@@ -10444,9 +10451,9 @@
    * @return {?}
    */
   function isStyleUrlResolvable(url) {
-      if (isBlank(url) || url.length === 0 || url[0] == '/')
+      if (url == null || url.length === 0 || url[0] == '/')
           return false;
-      var /** @type {?} */ schemeMatch = url.match(_urlWithSchemaRe);
+      var /** @type {?} */ schemeMatch = url.match(URL_WITH_SCHEMA_REGEXP);
       return schemeMatch === null || schemeMatch[1] == 'package' || schemeMatch[1] == 'asset';
   }
   /**
@@ -10459,7 +10466,7 @@
    */
   function extractStyleUrls(resolver, baseUrl, cssText) {
       var /** @type {?} */ foundUrls = [];
-      var /** @type {?} */ modifiedCssText = cssText.replace(_cssImportRe, function () {
+      var /** @type {?} */ modifiedCssText = cssText.replace(CSS_COMMENT_REGEXP, '').replace(CSS_IMPORT_REGEXP, function () {
           var m = [];
           for (var _i = 0; _i < arguments.length; _i++) {
               m[_i - 0] = arguments[_i];
@@ -10474,8 +10481,9 @@
       });
       return new StyleWithImports(modifiedCssText, foundUrls);
   }
-  var /** @type {?} */ _cssImportRe = /@import\s+(?:url\()?\s*(?:(?:['"]([^'"]*))|([^;\)\s]*))[^;]*;?/g;
-  var /** @type {?} */ _urlWithSchemaRe = /^([^:/?#]+):/;
+  var /** @type {?} */ CSS_IMPORT_REGEXP = /@import\s+(?:url\()?\s*(?:(?:['"]([^'"]*))|([^;\)\s]*))[^;]*;?/g;
+  var /** @type {?} */ CSS_COMMENT_REGEXP = /\/\*.+?\*\//g;
+  var /** @type {?} */ URL_WITH_SCHEMA_REGEXP = /^([^:/?#]+):/;
 
   /**
    * @license
@@ -15776,11 +15784,13 @@
   /**
    * @param {?} values
    * @param {?=} type
+   * @param {?=} quoted
    * @return {?}
    */
-  function literalMap(values, type) {
+  function literalMap(values, type, quoted) {
       if (type === void 0) { type = null; }
-      return new LiteralMapExpr(values.map(function (entry) { return new LiteralMapEntry(entry[0], entry[1]); }), type);
+      if (quoted === void 0) { quoted = false; }
+      return new LiteralMapExpr(values.map(function (entry) { return new LiteralMapEntry(entry[0], entry[1], quoted); }), type);
   }
   /**
    * @param {?} expr
@@ -24016,7 +24026,7 @@
           }
           ast.styles.forEach(function (entry) {
               var /** @type {?} */ entries = Object.keys(entry).map(function (key) { return [key, literal(entry[key])]; });
-              stylesArr.push(literalMap(entries));
+              stylesArr.push(literalMap(entries, null, true));
           });
           return importExpr(createIdentifier(Identifiers.AnimationStyles)).instantiate([
               importExpr(createIdentifier(Identifiers.collectAndResolveStyles)).callFn([
@@ -24249,11 +24259,11 @@
               if (isPresent(value)) {
                   var /** @type {?} */ styleMap_1 = [];
                   Object.keys(value).forEach(function (key) { styleMap_1.push([key, literal(value[key])]); });
-                  variableValue = literalMap(styleMap_1);
+                  variableValue = literalMap(styleMap_1, null, true);
               }
               lookupMap.push([stateName, variableValue]);
           });
-          var /** @type {?} */ compiledStatesMapStmt = this._statesMapVar.set(literalMap(lookupMap)).toDeclStmt();
+          var /** @type {?} */ compiledStatesMapStmt = this._statesMapVar.set(literalMap(lookupMap, null, true)).toDeclStmt();
           var /** @type {?} */ statements = [compiledStatesMapStmt, fnStatement];
           return new AnimationEntryCompileResult(this.animationName, statements, fnVariable);
       };

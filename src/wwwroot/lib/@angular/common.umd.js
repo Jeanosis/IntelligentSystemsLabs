@@ -1,5 +1,5 @@
 /**
- * @license Angular v2.4.0
+ * @license Angular v2.4.1
  * (c) 2010-2016 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -1599,6 +1599,24 @@
             this._cdr = _cdr;
             this._differ = null;
         }
+        Object.defineProperty(NgFor.prototype, "ngForTrackBy", {
+            /**
+             * @return {?}
+             */
+            get: function () { return this._trackByFn; },
+            /**
+             * @param {?} fn
+             * @return {?}
+             */
+            set: function (fn) {
+                if (typeof fn !== 'function') {
+                    throw new Error("trackBy must be a function, but received " + JSON.stringify(fn));
+                }
+                this._trackByFn = fn;
+            },
+            enumerable: true,
+            configurable: true
+        });
         Object.defineProperty(NgFor.prototype, "ngForTemplate", {
             /**
              * @param {?} value
@@ -3460,7 +3478,7 @@
     /**
      * @stable
      */
-    var /** @type {?} */ VERSION = new _angular_core.Version('2.4.0');
+    var /** @type {?} */ VERSION = new _angular_core.Version('2.4.1');
 
     exports.NgLocalization = NgLocalization;
     exports.CommonModule = CommonModule;
