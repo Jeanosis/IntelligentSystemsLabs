@@ -16,7 +16,7 @@ namespace Libraries.FuzzyLogicInference.Classes
     /// u(x) = max(min((x - a) / (b - a), 1, (d - x) / (d - c)), 0)
     ///
     /// </summary>
-	public class ClassWithTrapezoidalMF : Class
+    public class ClassWithTrapezoidalMF : Class
     {
         public double A { get; private set; }
         public double B { get; private set; }
@@ -24,14 +24,14 @@ namespace Libraries.FuzzyLogicInference.Classes
         public double D { get; private set; }
 
         public ClassWithTrapezoidalMF(string name, double a, double b, double c, double d) : base(name)
-		{
+        {
             if (a >= b || b >= c || c >= d)
             {
                 throw new ArgumentException("The parameters do not satisfy a < b < c < d.");
             }
 
             A = a; B = b; C = c; D = d;
-		}
+        }
 
         public override double CalculateMembershipValueFor(double value)
         {

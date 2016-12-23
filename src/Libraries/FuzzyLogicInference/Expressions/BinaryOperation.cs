@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 namespace Libraries.FuzzyLogicInference.Expressions
 {
-	public abstract class BinaryOperation : Expression
-	{
+    public abstract class BinaryOperation : Expression
+    {
         public Expression LeftArgument { get; private set; }
         public Expression RightArgument { get; private set; }
 
@@ -16,10 +16,10 @@ namespace Libraries.FuzzyLogicInference.Expressions
         }
 
         public BinaryOperation(Expression left, Expression right)
-		{
+        {
             LeftArgument = left;
             RightArgument = right;
-		}
-	}
+        }
+    }
 }
 

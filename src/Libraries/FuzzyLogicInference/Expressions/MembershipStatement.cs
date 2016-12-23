@@ -9,8 +9,8 @@ namespace Libraries.FuzzyLogicInference.Expressions
     /// The expression of that type states,
     /// that the given value lies within the stored class.
     /// </summary>
-	public class MembershipStatement : Expression
-	{
+    public class MembershipStatement : Expression
+    {
         public Class Class { get; private set; }
         public Parameter Parameter { get; private set; }
 
@@ -20,14 +20,14 @@ namespace Libraries.FuzzyLogicInference.Expressions
         }
 
         public MembershipStatement(Parameter parameter, Class clazz)
-		{
+        {
             if (!parameter.Classes.Contains(clazz))
             {
                 throw new ArgumentException("The given class is not connected with the given parameter.");
             }
 
             Parameter = parameter; Class = clazz;
-		}
+        }
 
         public override double Evaluate(IDictionary<Class, double> membershipValues)
         {

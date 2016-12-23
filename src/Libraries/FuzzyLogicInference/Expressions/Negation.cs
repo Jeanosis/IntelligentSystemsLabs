@@ -4,8 +4,8 @@ using Libraries.FuzzyLogicInference.Classes;
 
 namespace Libraries.FuzzyLogicInference.Expressions
 {
-	public class Negation : Expression
-	{
+    public class Negation : Expression
+    {
         public Expression Argument { get; private set; }
 
         public override IEnumerable<Class> ReferencedClasses

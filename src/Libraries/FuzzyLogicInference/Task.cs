@@ -6,14 +6,14 @@ using System.Linq;
 
 namespace Libraries.FuzzyLogicInference
 {
-	public class Task
-	{
-		public string Name { get; private set; }
-		public IEnumerable<Parameter> InputParameters { get; private set; }
-		public IEnumerable<Parameter> OutputParameters { get; private set; }
-		public IEnumerable<Rule> Rules { get; private set; }
+    public class Task
+    {
+        public string Name { get; private set; }
+        public IEnumerable<Parameter> InputParameters { get; private set; }
+        public IEnumerable<Parameter> OutputParameters { get; private set; }
+        public IEnumerable<Rule> Rules { get; private set; }
 
-		public Task (string name, IEnumerable<Parameter> inputs, IEnumerable<Parameter> outputs, IEnumerable<Rule> rules)
+        public Task (string name, IEnumerable<Parameter> inputs, IEnumerable<Parameter> outputs, IEnumerable<Rule> rules)
         {
             if (inputs.GroupBy(p => p.Name).Any(g => g.Count() > 1))
             {
@@ -48,7 +48,7 @@ namespace Libraries.FuzzyLogicInference
             InputParameters = inputs;
             OutputParameters = outputs;
             Rules = rules;
-		}
+        }
 
         public IEnumerable<OutputParameterSolution> Solve(IDictionary<Parameter, double> inputValues)
         {

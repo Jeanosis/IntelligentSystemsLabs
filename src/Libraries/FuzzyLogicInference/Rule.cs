@@ -11,7 +11,7 @@ namespace Libraries.FuzzyLogicInference
     /// and a fuzzy-logic expression, used to
     /// calculate class's membership value.
     /// </summary>
-	public class Rule
+    public class Rule
     {
         public Parameter Parameter { get; private set; }
         public Class Class { get; private set; }
@@ -25,7 +25,7 @@ namespace Libraries.FuzzyLogicInference
             }
 
             Parameter = parameter; Class = clazz; Expression = expression;
-		}
-	}
+        }
+    }
 }
 

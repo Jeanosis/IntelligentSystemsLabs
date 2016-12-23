@@ -4,8 +4,8 @@ using Libraries.FuzzyLogicInference.Classes;
 
 namespace Libraries.FuzzyLogicInference.Expressions
 {
-	public class Conjunction : BinaryOperation
-	{
+    public class Conjunction : BinaryOperation
+    {
         public Conjunction(Expression left, Expression right) : base(left, right) { }
 
         public override double Evaluate(IDictionary<Class, double> membershipValues)

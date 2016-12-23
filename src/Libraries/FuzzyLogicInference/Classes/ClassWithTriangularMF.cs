@@ -14,21 +14,21 @@ namespace Libraries.FuzzyLogicInference.Classes
     ///
     /// u(x) = max(min((x - a) / (b - a), (c - x) / (c - b)), 0)
     /// </summary>
-	public class ClassWithTriangularMF : Class
-	{
+    public class ClassWithTriangularMF : Class
+    {
         public double A { get; private set; }
         public double B { get; private set; }
         public double C { get; private set; }
 
         public ClassWithTriangularMF(string name, double a, double b, double c) : base(name)
-		{
+        {
             if (a >= b || b >= c)
             {
                 throw new ArgumentException("Parameters do not satisfy a < b < c.");
             }
 
             A = a; B = b; C = c;
-		}
+        }
 
         public override double CalculateMembershipValueFor(double value)
         {

@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace Libraries.FuzzyLogicInference
 {
-	public class Parameter
-	{
-		public string Name { get; private set; }
-		public Range Range { get; private set; }
-		public IEnumerable<Class> Classes { get; private set; }
+    public class Parameter
+    {
+        public string Name { get; private set; }
+        public Range Range { get; private set; }
+        public IEnumerable<Class> Classes { get; private set; }
 
-		public Parameter(string name, Range range, IEnumerable<Class> classes)
-		{
+        public Parameter(string name, Range range, IEnumerable<Class> classes)
+        {
             if (range.IsEmpty)
             {
                 throw new ArgumentException("A parameter cannot be defined on an empty range.");
@@ -29,7 +29,7 @@ namespace Libraries.FuzzyLogicInference
             }
             
             Name = name; Range = range; Classes = classes;
-		}
+        }
 
         /// <summary>
         /// Calculates membership values of a given value
@@ -51,6 +51,6 @@ namespace Libraries.FuzzyLogicInference
 
             return Classes.ToDictionary(clazz => clazz, clazz => clazz.CalculateMembershipValueFor(value));
         }
-	}
+    }
 }
 
