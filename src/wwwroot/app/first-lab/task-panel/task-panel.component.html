@@ -12,10 +12,40 @@
             </a>
         </div>
         <div class="collapse" id="collapseInputParams">
-            <div class="card-block">
-                <ul>
-                    <li *ngFor="let item of inputParams">{{item.name}} = [{{item.from}}, {{item.to}}]</li>
-                </ul>
+            <div class="card-block" *ngFor="let item of inputParams; let i = index">
+                <form>
+                    <div id="inputParam{{i}}">
+                        <h4>Input Param {{i}}:</h4>
+                        <div>
+                            <div class="form-group" style="display: inline-block;">
+                                <label for="inputParamName{{i}}">{{item.name}}</label>
+                                <input id="inputParamName{{i}}" type="text" class="form-control" value="{{item.name}}">
+                            </div>
+                            <div class="form-group" style="display: inline-block;">
+                                <label for="inputParamFrom{{i}}">From:</label>
+                                <input id="inputParamFrom{{i}}" type="text" class="form-control" value="{{item.from}}">
+                            </div>
+                            <div class="form-group" style="display: inline-block;">
+                                <label for="inputParamTo{{i}}">To:</label>
+                                <input id="inputParamTo{{i}}" type="text" class="form-control" value="{{item.to}}">
+                            </div>
+                        </div>
+                        <!--<div class="row">
+                            <div class="form-group col-md-6" style="background-color: red;">
+                                <label for="inputParamName{{index}}">{{item.name}}</label>
+                                <input id="inputParamName{{index}}" type="text" class="form-control" value="{{item.name}}" style="min-width: 100%; background-color: blue;">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputParamFrom{{index}}">From:</label>
+                                <input id="inputParamFrom{{index}}" type="text" class="form-control" placeholder="{{item.from}}">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputParamTo{{index}}">To:</label>
+                                <input id="inputParamTo{{index}}" type="text" class="form-control" placeholder="{{item.to}}">
+                            </div>
+                        </div>-->
+                    </div>
+                </form>
             </div>
         </div>
     </div>
