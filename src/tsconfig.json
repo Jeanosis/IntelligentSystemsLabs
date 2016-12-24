@@ -15,7 +15,8 @@
       "node"
     ],
     "suppressImplicitAnyIndexErrors": true,
-    "watch": true
+    "watch": true,
+    "removeComments": true
   },
   "exclude": [
       "node_modules",
