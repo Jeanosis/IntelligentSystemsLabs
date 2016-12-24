@@ -13,7 +13,9 @@
         </div>
         <div class="collapse" id="collapseInputParams">
             <div class="card-block">
-                <span>Some text for Input Params</span>
+                <ul>
+                    <li *ngFor="let item of inputParams">{{item.name}} = [{{item.from}}, {{item.to}}]</li>
+                </ul>
             </div>
         </div>
     </div>
