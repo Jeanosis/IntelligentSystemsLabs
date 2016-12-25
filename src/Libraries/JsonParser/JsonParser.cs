@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace JsonParser
+namespace Libraries.JsonParser
 {
     public static class Parser
     {
-        public static CoreLogic.Task TaskFromJson(string json)
+        public static FuzzyLogicInference.Task TaskFromJson(string json)
         {
             var taskModel = JsonConvert.DeserializeObject<Models.Task>(json);
 
@@ -15,12 +15,12 @@ namespace JsonParser
             var outVars = taskModel.out_vars.ConvertAll(ConvertModelToParameter);
             var rules = taskModel.rules.ConvertAll(rule => ConvertModelToRule(rule, inVars, outVars));
 
-            return new CoreLogic.Task(taskModel.name, inVars, outVars, rules);
+            return new FuzzyLogicInference.Task(taskModel.name, inVars, outVars, rules);
         }
         
-        public static string TaskToJson(CoreLogic.Task task) => TaskToJson(task, true);
+        public static string TaskToJson(FuzzyLogicInference.Task task) => TaskToJson(task, true);
 
-        public static string TaskToJson(CoreLogic.Task task, bool indentSubobjects)
+        public static string TaskToJson(FuzzyLogicInference.Task task, bool indentSubobjects)
         {
             var taskModel = new Models.Task {
                 name = task.Name,
@@ -32,7 +32,7 @@ namespace JsonParser
             return JsonConvert.SerializeObject(taskModel, indentSubobjects ? Formatting.Indented : Formatting.None);
         }
 
-        public static IDictionary<CoreLogic.Parameter, double> InputsFromJson(CoreLogic.Task task, string json)
+        public static IDictionary<FuzzyLogicInference.Parameter, double> InputsFromJson(FuzzyLogicInference.Task task, string json)
         {
             var parsedInput = JsonConvert.DeserializeObject<Dictionary<string, double>>(json);
 
@@ -46,28 +46,28 @@ namespace JsonParser
                 .ToDictionary(tuple => tuple.Item1, tuple => tuple.Item2);
         }
 
-        public static string SolutionToJson(IEnumerable<CoreLogic.Task.OutputParameterSolution> results) =>
+        public static string SolutionToJson(IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> results) =>
             SolutionToJson(results, true);
 
-        public static string SolutionToJson(IEnumerable<CoreLogic.Task.OutputParameterSolution> results, bool indented)
+        public static string SolutionToJson(IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> results, bool indented)
         {
             var dict = results.ToDictionary(r => r.Parameter.Name, r => r.GravityCenter);
             return JsonConvert.SerializeObject(dict, indented ? Formatting.Indented : Formatting.None);
         }
 
-        private static CoreLogic.Parameter ConvertModelToParameter(Models.Parameter parameterModel)
+        private static FuzzyLogicInference.Parameter ConvertModelToParameter(Models.Parameter parameterModel)
         {
-            var range = new CoreLogic.Range(parameterModel.from, parameterModel.to);
+            var range = new FuzzyLogicInference.Range(parameterModel.from, parameterModel.to);
             var classes = parameterModel.classes.ConvertAll(ConvertModelToClass);
 
-            return new CoreLogic.Parameter(parameterModel.name, range, classes);
+            return new FuzzyLogicInference.Parameter(parameterModel.name, range, classes);
         }
 
-        private static CoreLogic.Classes.Class ConvertModelToClass(Models.Class classModel)
+        private static FuzzyLogicInference.Classes.Class ConvertModelToClass(Models.Class classModel)
         {
             if (classModel.type == MF_TRIANGULAR)
             {
-                return new CoreLogic.Classes.ClassWithTriangularMF(
+                return new FuzzyLogicInference.Classes.ClassWithTriangularMF(
                     classModel.name,
                     classModel.@params[MF_TRIANGULAR_A],
                     classModel.@params[MF_TRIANGULAR_B],
@@ -76,7 +76,7 @@ namespace JsonParser
             }
             else if (classModel.type == MF_TRAPEZOIDAL)
             {
-                return new CoreLogic.Classes.ClassWithTrapezoidalMF(
+                return new FuzzyLogicInference.Classes.ClassWithTrapezoidalMF(
                     classModel.name,
                     classModel.@params[MF_TRAPEZOIDAL_A],
                     classModel.@params[MF_TRAPEZOIDAL_B],
@@ -86,7 +86,7 @@ namespace JsonParser
             }
             else if (classModel.type == MF_GAUSSIAN)
             {
-                return new CoreLogic.Classes.ClassWithGaussianMF(
+                return new FuzzyLogicInference.Classes.ClassWithGaussianMF(
                     classModel.name,
                     classModel.@params[MF_GAUSSIAN_C],
                     classModel.@params[MF_GAUSSIAN_SIGMA]
@@ -94,7 +94,7 @@ namespace JsonParser
             }
             else if (classModel.type == MF_GENERALISED_BELL)
             {
-                return new CoreLogic.Classes.ClassWithGeneralisedBellMF(
+                return new FuzzyLogicInference.Classes.ClassWithGeneralisedBellMF(
                     classModel.name,
                     classModel.@params[MF_GENERALISED_BELL_A],
                     classModel.@params[MF_GENERALISED_BELL_B],
@@ -103,7 +103,7 @@ namespace JsonParser
             }
             else if (classModel.type == MF_SIGMOID_DIFF)
             {
-                return new CoreLogic.Classes.ClassWithSigmoidDifferenceMF(
+                return new FuzzyLogicInference.Classes.ClassWithSigmoidDifferenceMF(
                     classModel.name,
                     classModel.@params[MF_SIGMOID_DIFF_A1],
                     classModel.@params[MF_SIGMOID_DIFF_A2],
@@ -117,10 +117,10 @@ namespace JsonParser
             }
         }
 
-        private static CoreLogic.Rule ConvertModelToRule(
+        private static FuzzyLogicInference.Rule ConvertModelToRule(
             Models.Rule ruleModel, 
-            IEnumerable<CoreLogic.Parameter> inputVariables, 
-            IEnumerable<CoreLogic.Parameter> outputVariables
+            IEnumerable<FuzzyLogicInference.Parameter> inputVariables, 
+            IEnumerable<FuzzyLogicInference.Parameter> outputVariables
         )
         {
             var parameter = outputVariables.FirstOrDefault(p => p.Name == ruleModel.var_name);
@@ -137,30 +137,30 @@ namespace JsonParser
 
             var expression = ConvertModelToExpression(ruleModel.expr, inputVariables);
 
-            return new CoreLogic.Rule(parameter, clazz, expression);
+            return new FuzzyLogicInference.Rule(parameter, clazz, expression);
         }
 
-        private static CoreLogic.Expressions.Expression ConvertModelToExpression(
+        private static FuzzyLogicInference.Expressions.Expression ConvertModelToExpression(
             Models.Expression expressionModel,
-            IEnumerable<CoreLogic.Parameter> inputVariables
+            IEnumerable<FuzzyLogicInference.Parameter> inputVariables
         )
         {
             if (expressionModel.type == EXPR_CONJUNCTION)
             {
                 var left = ConvertModelToExpression(expressionModel.left, inputVariables);
                 var right = ConvertModelToExpression(expressionModel.right, inputVariables);
-                return new CoreLogic.Expressions.Conjunction(left, right);
+                return new FuzzyLogicInference.Expressions.Conjunction(left, right);
             }
             else if (expressionModel.type == EXPR_DISJUNCTION)
             {
                 var left = ConvertModelToExpression(expressionModel.left, inputVariables);
                 var right = ConvertModelToExpression(expressionModel.right, inputVariables);
-                return new CoreLogic.Expressions.Disjunction(left, right);
+                return new FuzzyLogicInference.Expressions.Disjunction(left, right);
             }
             else if (expressionModel.type == EXPR_NEGATION)
             {
                 var argument = ConvertModelToExpression(expressionModel.arg, inputVariables);
-                return new CoreLogic.Expressions.Negation(argument);
+                return new FuzzyLogicInference.Expressions.Negation(argument);
             }
             else if (expressionModel.type == EXPR_STATEMENT)
             {
@@ -176,7 +176,7 @@ namespace JsonParser
                     throw new ArgumentException($"A statement references a non-existing input variable's class {expressionModel.class_name}.");
                 }
 
-                return new CoreLogic.Expressions.MembershipStatement(parameter, clazz);
+                return new FuzzyLogicInference.Expressions.MembershipStatement(parameter, clazz);
             }
             else
             {
@@ -184,7 +184,7 @@ namespace JsonParser
             }
         }
         
-        private static Models.Parameter ConvertParameterToModel(CoreLogic.Parameter parameter)
+        private static Models.Parameter ConvertParameterToModel(FuzzyLogicInference.Parameter parameter)
         {
             return new Models.Parameter {
                 name = parameter.Name,
@@ -194,46 +194,46 @@ namespace JsonParser
             };
         }
 
-        private static Models.Class ConvertClassToModel(CoreLogic.Classes.Class clazz)
+        private static Models.Class ConvertClassToModel(FuzzyLogicInference.Classes.Class clazz)
         {
             var classModel = new Models.Class { name = clazz.Name, @params = new Dictionary<string, double>() };
 
-            if (clazz is CoreLogic.Classes.ClassWithTriangularMF)
+            if (clazz is FuzzyLogicInference.Classes.ClassWithTriangularMF)
             {
                 classModel.type = MF_TRIANGULAR;
-                var classWithTriangularMF = clazz as CoreLogic.Classes.ClassWithTriangularMF;
+                var classWithTriangularMF = clazz as FuzzyLogicInference.Classes.ClassWithTriangularMF;
                 classModel.@params[MF_TRIANGULAR_A] = classWithTriangularMF.A;
                 classModel.@params[MF_TRIANGULAR_B] = classWithTriangularMF.B;
                 classModel.@params[MF_TRIANGULAR_C] = classWithTriangularMF.C;
             }
-            else if (clazz is CoreLogic.Classes.ClassWithTrapezoidalMF)
+            else if (clazz is FuzzyLogicInference.Classes.ClassWithTrapezoidalMF)
             {
                 classModel.type = MF_TRAPEZOIDAL;
-                var classWithTrapezoidalMF = clazz as CoreLogic.Classes.ClassWithTrapezoidalMF;
+                var classWithTrapezoidalMF = clazz as FuzzyLogicInference.Classes.ClassWithTrapezoidalMF;
                 classModel.@params[MF_TRAPEZOIDAL_A] = classWithTrapezoidalMF.A;
                 classModel.@params[MF_TRAPEZOIDAL_B] = classWithTrapezoidalMF.B;
                 classModel.@params[MF_TRAPEZOIDAL_C] = classWithTrapezoidalMF.C;
                 classModel.@params[MF_TRAPEZOIDAL_D] = classWithTrapezoidalMF.D;
             }
-            else if (clazz is CoreLogic.Classes.ClassWithGaussianMF)
+            else if (clazz is FuzzyLogicInference.Classes.ClassWithGaussianMF)
             {
                 classModel.type = MF_GAUSSIAN;
-                var classWithGaussianMF = clazz as CoreLogic.Classes.ClassWithGaussianMF;
+                var classWithGaussianMF = clazz as FuzzyLogicInference.Classes.ClassWithGaussianMF;
                 classModel.@params[MF_GAUSSIAN_C] = classWithGaussianMF.C;
                 classModel.@params[MF_GAUSSIAN_SIGMA] = classWithGaussianMF.Sigma;
             }
-            else if (clazz is CoreLogic.Classes.ClassWithGeneralisedBellMF)
+            else if (clazz is FuzzyLogicInference.Classes.ClassWithGeneralisedBellMF)
             {
                 classModel.type = MF_GENERALISED_BELL;
-                var classWithGeneralisedBellMF = clazz as CoreLogic.Classes.ClassWithGeneralisedBellMF;
+                var classWithGeneralisedBellMF = clazz as FuzzyLogicInference.Classes.ClassWithGeneralisedBellMF;
                 classModel.@params[MF_GENERALISED_BELL_A] = classWithGeneralisedBellMF.A;
                 classModel.@params[MF_GENERALISED_BELL_B] = classWithGeneralisedBellMF.B;
                 classModel.@params[MF_GENERALISED_BELL_C] = classWithGeneralisedBellMF.C;
             }
-            else if (clazz is CoreLogic.Classes.ClassWithSigmoidDifferenceMF)
+            else if (clazz is FuzzyLogicInference.Classes.ClassWithSigmoidDifferenceMF)
             {
                 classModel.type = MF_SIGMOID_DIFF;
-                var classWithSigmoidDifferenceMF = clazz as CoreLogic.Classes.ClassWithSigmoidDifferenceMF;
+                var classWithSigmoidDifferenceMF = clazz as FuzzyLogicInference.Classes.ClassWithSigmoidDifferenceMF;
                 classModel.@params[MF_SIGMOID_DIFF_A1] = classWithSigmoidDifferenceMF.A1;
                 classModel.@params[MF_SIGMOID_DIFF_A2] = classWithSigmoidDifferenceMF.A2;
                 classModel.@params[MF_SIGMOID_DIFF_C1] = classWithSigmoidDifferenceMF.C1;
@@ -247,7 +247,7 @@ namespace JsonParser
             return classModel;
         }
 
-        private static Models.Rule ConvertRuleToModel(CoreLogic.Rule rule)
+        private static Models.Rule ConvertRuleToModel(FuzzyLogicInference.Rule rule)
         {
             return new Models.Rule {
                 var_name = rule.Parameter.Name,
@@ -256,34 +256,34 @@ namespace JsonParser
             };
         }
 
-        private static Models.Expression ConvertExpressionToModel(CoreLogic.Expressions.Expression expression)
+        private static Models.Expression ConvertExpressionToModel(FuzzyLogicInference.Expressions.Expression expression)
         {
             var expressionModel = new Models.Expression();
 
-            if (expression is CoreLogic.Expressions.Conjunction)
+            if (expression is FuzzyLogicInference.Expressions.Conjunction)
             {
                 expressionModel.type = EXPR_CONJUNCTION;
-                var conjunction = expression as CoreLogic.Expressions.Conjunction;
+                var conjunction = expression as FuzzyLogicInference.Expressions.Conjunction;
                 expressionModel.left = ConvertExpressionToModel(conjunction.LeftArgument);
                 expressionModel.right = ConvertExpressionToModel(conjunction.RightArgument);
             }
-            else if (expression is CoreLogic.Expressions.Disjunction)
+            else if (expression is FuzzyLogicInference.Expressions.Disjunction)
             {
                 expressionModel.type = EXPR_DISJUNCTION;
-                var disjunction = expression as CoreLogic.Expressions.Disjunction;
+                var disjunction = expression as FuzzyLogicInference.Expressions.Disjunction;
                 expressionModel.left = ConvertExpressionToModel(disjunction.LeftArgument);
                 expressionModel.right = ConvertExpressionToModel(disjunction.RightArgument);
             }
-            else if (expression is CoreLogic.Expressions.Negation)
+            else if (expression is FuzzyLogicInference.Expressions.Negation)
             {
                 expressionModel.type = EXPR_NEGATION;
-                var negation = expression as CoreLogic.Expressions.Negation;
+                var negation = expression as FuzzyLogicInference.Expressions.Negation;
                 expressionModel.arg = ConvertExpressionToModel(negation.Argument);
             }
-            else if (expression is CoreLogic.Expressions.MembershipStatement)
+            else if (expression is FuzzyLogicInference.Expressions.MembershipStatement)
             {
                 expressionModel.type = EXPR_STATEMENT;
-                var statement = expression as CoreLogic.Expressions.MembershipStatement;
+                var statement = expression as FuzzyLogicInference.Expressions.MembershipStatement;
                 expressionModel.var_name = statement.Parameter.Name;
                 expressionModel.class_name = statement.Class.Name;
             }
