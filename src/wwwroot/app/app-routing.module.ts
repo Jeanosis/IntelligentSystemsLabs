@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 /*import { TaskPanelComponent } from './task-panel/task-panel.component';*/
 
 const routes: Routes = [
-    {
+    /*{
         path: '',
         redirectTo: '/lab1',
         pathMatch: 'full'

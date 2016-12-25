@@ -31,7 +31,8 @@ var paths = {
             angular + "platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js",
             angular + "http/bundles/http.umd.js",
             angular + "router/bundles/router.umd.js",
-            angular + "forms/bundles/forms.umd.js"
+            angular + "forms/bundles/forms.umd.js",
+            angular + "material/bundles/material.umd.js"
         ],
         rxjs: "node_modules/rxjs/**/*.js",
         others: [

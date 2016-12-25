@@ -1,24 +1,18 @@
-<!--<form>
-    <div *ngFor="let item of inputParams; let i = index" id="inputParam{{i}}">
-        <h4>Input Param {{i}}:</h4>
-        <div>
-            <div class="form-group" style="display: inline-block;">
-                <label for="inputParamName{{i}}">{{item.name}}</label>
-                <input id="inputParamName{{i}}" type="text" class="form-control" value="{{item.name}}">
-            </div>
-            <div class="form-group" style="display: inline-block;">
-                <label for="inputParamFrom{{i}}">From:</label>
-                <input id="inputParamFrom{{i}}" type="text" class="form-control" value="{{item.from}}">
-            </div>
-            <div class="form-group" style="display: inline-block;">
-                <label for="inputParamTo{{i}}">To:</label>
-                <input id="inputParamTo{{i}}" type="text" class="form-control" value="{{item.to}}">
-            </div>
+<div *ngFor="let item of inputParams; let i = index" id="inputParam{{i}}">
+    <h4>Input Param {{i}}:</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <md-input placeholder="Task Name" [(ngModel)]="item.name" style="width: 100%"></md-input>
+        </div>
+        <div class="col-md-3">
+            <md-input placeholder="From" [(ngModel)]="item.from" style="width: 100%"></md-input>
+        </div>
+        <div class="col-md-3">
+            <md-input placeholder="To" [(ngModel)]="item.to" style="width: 100%"></md-input>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>-->
-<div *ngFor="let item of inputParams; let i = index" id="inputParam{{i}}">
+</div>
+<!--<div *ngFor="let item of inputParams; let i = index" id="inputParam{{i}}">
     <h4>Input Param {{i}}:</h4>
     <div>
         <div class="form-group" style="display: inline-block;">
@@ -34,4 +28,4 @@
             <input id="inputParamTo{{i}}" type="text" class="form-control" [(ngModel)]="item.to">
         </div>
     </div>
-</div>
+</div>-->

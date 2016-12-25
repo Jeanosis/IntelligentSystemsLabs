@@ -12,7 +12,8 @@
       "es2015", "es5", "dom"
     ],
     "types": [
-      "node"
+      "node",
+      "hammerjs"
     ],
     "suppressImplicitAnyIndexErrors": true,
     "watch": true,

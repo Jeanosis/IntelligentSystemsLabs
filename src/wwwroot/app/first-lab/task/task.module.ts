@@ -1,6 +1,7 @@
 import { NgModule }     from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }  from '@angular/forms';
+import { MaterialModule } from '@angular/material';
 import { TaskRoutingModule } from './task-routing.module';
 
 import { TaskInputParamsModule } from './task-input-params/task-input-params.module';
@@ -11,6 +12,7 @@ import { PersonService, Person }    from './person.service';
     imports: [
         CommonModule,
         FormsModule,
+        MaterialModule.forRoot(),
         TaskRoutingModule,
         TaskInputParamsModule
     ],
