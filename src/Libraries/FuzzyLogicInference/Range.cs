@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Libraries.FuzzyLogicInference
 {
@@ -41,6 +42,19 @@ namespace Libraries.FuzzyLogicInference
         /// <param name="x"> The value to be tested. </param>
         /// <returns> True if x is in range and false otherwise. </returns>
         public bool Contains(double x) => LowerBoundary <= x && x <= UpperBoundary;
+
+        /// <summary>
+        /// Allows to enumerate throught the range with the given step.
+        /// </summary>
+        /// <param name="step"> The step of enumeration. </param>
+        /// <returns> Returns sequence of numbers x_n = LowerBoundary + n*step, where all x_n <= b. </returns>
+        public IEnumerable<double> EnumerateWithStep(double step)
+        {
+            for (double x = this.LowerBoundary; x <= this.UpperBoundary; x += step)
+            {
+                yield return x;
+            }
+        }
     }
 }
 
