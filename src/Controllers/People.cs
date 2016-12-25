@@ -39,11 +39,10 @@ namespace WebApplication.Controllers
 
         [Route("api/persons")]
         [AcceptVerbs("POST", "PUT")]
-        public ActionResult AddPerson(string person)/*[FromBody] Person person)*//*string person*/
+        public ActionResult AddPerson([FromBody] Person person)
         {
-            Console.WriteLine("New Person:" + person);
-
-            return Ok(People[0]);
+            Console.WriteLine($"New Person: {person.Name}");
+            return Ok(person);
         }
     }
 }
