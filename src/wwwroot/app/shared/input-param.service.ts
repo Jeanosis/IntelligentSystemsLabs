@@ -3,21 +3,25 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
 
-import { InputParam } from './input-param.model';
+import { Param } from './param.model';
 
 @Injectable()
 export class InputParamService {
 
-    constructor (private _http: Http) { }
+    constructor (private http: Http) { }
 
-    loadData(): Promise<InputParam[]> {
-        return this._http.get('/api/persons')
+    loadData(): Promise<Param[]> {
+        return this.http.get('/api/persons')
         .toPromise()
         .then(response => this.extractArray());
     }
 
+    saveData() {
+        console.log('data saved');
+    }
+
     protected extractArray() {
-        var param1: InputParam = {
+        /*var param1: InputParam = {
             name: 'param 1',
             from: 1.2,
             to: 3.2
@@ -29,6 +33,10 @@ export class InputParamService {
             to: 4.2
         };
 
-        return [ param1, param2 ];
+        return [ param1, param2 ];*/
+        return [
+            new Param({ name: 'param 1', from: 0.5, to: 100 }),
+            new Param({ name: 'param 2', from: 20, to: 35.3 })
+        ];
     }
 }

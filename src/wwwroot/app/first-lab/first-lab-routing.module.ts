@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { FirstLabComponent } from './first-lab.component';
-import { TaskPanelComponent } from './task-panel/task-panel.component';
+//import { TaskComponent } from './task/task.component';
 import { SolutionPanelComponent } from './solution-panel/solution-panel.component';
 
 const routes: Routes = [
@@ -9,14 +9,15 @@ const routes: Routes = [
     path: 'lab1',
     component: FirstLabComponent,
     children: [
-      {
+      /*{
         path: '',
         redirectTo: '/lab1/task',
         pathMatch: 'full'
-      },
+      },*/
       {
         path: 'task',
-        component: TaskPanelComponent
+        //component: TaskComponent
+        loadChildren: 'app/first-lab/task/task.module#TaskModule'
       },
       {
         path: 'solution',

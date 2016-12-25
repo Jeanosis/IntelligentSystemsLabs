@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule  } from '@angular/platform-browser';
 /*import { APP_BASE_HREF } from '@angular/common';*/
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { FirstLabModule } from './first-lab/first-lab.module';
 import { AppToolbarModule } from './app-toolbar/app-toolbar.module';
@@ -14,6 +16,7 @@ import { AppComponent } from './app.component';
     imports: [
         BrowserModule,
         HttpModule,
+        ReactiveFormsModule,
         FormsModule,
         AppRoutingModule,
         FirstLabModule,

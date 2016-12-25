@@ -1,0 +1,45 @@
+<h4>This is task panel!</h4>
+<form>
+    <div class="form-group"><!-- has-danger">-->
+        <label for="taskName">Task Name</label>
+        <input id="taskName" type="text" class="form-control" placeholder="Task Name">
+        <!--<div class="form-control-feedback">wrong</div>-->
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a data-toggle="collapse" href="#collapseInputParams" aria-expanded="true" aria-controls="collapseInputParams">
+                Input parameters
+            </a>
+        </div>
+        <div class="collapse" id="collapseInputParams">
+            <div class="card-block">
+                <task-input>Loading...</task-input>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a data-toggle="collapse" href="#collapseOutputParams" aria-expanded="true" aria-controls="collapseOutputParams">
+                Output parameters
+            </a>
+        </div>
+        <div class="collapse" id="collapseOutputParams">
+            <div class="card-block">
+                <span>Some text for Output Params</span>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a data-toggle="collapse" href="#collapseRules" aria-expanded="true" aria-controls="collapseRules">
+                Rules
+            </a>
+        </div>
+        <div class="collapse" id="collapseRules">
+            <div class="card-block">
+                <span>Some text for Rules</span>
+            </div>
+        </div>
+    </div>
+</form>
+<button type="button" class="btn btn-primary" (click)="goToSolution()">Go to solution</button>
