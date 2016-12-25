@@ -1,16 +1,31 @@
 <div *ngFor="let item of inputParams; let i = index" id="inputParam{{i}}">
     <h4>Input Param {{i}}:</h4>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-1">
+            <a href="#{{i}}">#{{i}}</a>
+        </div>
+        <div class="col-md-5">
             <md-input placeholder="Task Name" [(ngModel)]="item.name" style="width: 100%"></md-input>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <md-input placeholder="From" [(ngModel)]="item.from" style="width: 100%"></md-input>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <md-input placeholder="To" [(ngModel)]="item.to" style="width: 100%"></md-input>
         </div>
+        <div class="col-md-2 card-header">
+            <a data-toggle="collapse" href="#collapseInputParams" aria-expanded="true" aria-controls="collapseInputParams">
+                V
+            </a>
+        </div>
     </div>
+        <div class="card">
+            <div class="collapse" id="collapseInputParams">
+                <div class="card-block">
+                    Classes
+                </div>
+            </div>
+        </div>
 </div>
 <!--<div *ngFor="let item of inputParams; let i = index" id="inputParam{{i}}">
     <h4>Input Param {{i}}:</h4>
