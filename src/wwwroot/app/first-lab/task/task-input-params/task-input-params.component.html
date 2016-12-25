@@ -14,13 +14,13 @@
             <md-input placeholder="To" [(ngModel)]="item.to" style="width: 100%"></md-input>
         </div>
         <div class="col-md-2 card-header">
-            <a data-toggle="collapse" href="#collapseInputParams" aria-expanded="true" aria-controls="collapseInputParams">
+            <a data-toggle="collapse" href="#inputClasses{{i}}" aria-expanded="true" [attr.aria-controls]="'inputClasses' + i">
                 V
             </a>
         </div>
     </div>
         <div class="card">
-            <div class="collapse" id="collapseInputParams">
+            <div class="collapse" id="inputClasses{{i}}">
                 <div class="card-block">
                     Classes
                 </div>
