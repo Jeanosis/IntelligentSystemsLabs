@@ -30,7 +30,10 @@
             },
             rxjs: {
                 defaultExtension: 'js'
-            }
+            }/*,
+            '@angular/material': {
+                defaultExtension: 'js'
+            }*/
         }
     });
 })(this);

@@ -31,9 +31,10 @@ var paths = {
             angular + "platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js",
             angular + "http/bundles/http.umd.js",
             angular + "router/bundles/router.umd.js",
-            angular + "forms/bundles/forms.umd.js",
-            angular + "material/bundles/material.umd.js"
+            angular + "forms/bundles/forms.umd.js"/*,
+            angular + "material/bundles/material.umd.js"*/
         ],
+        angular_material: angular + "material/**/*.",
         rxjs: "node_modules/rxjs/**/*.js",
         others: [
             "node_modules/zone.js/dist/zone.js",
@@ -45,6 +46,11 @@ var paths = {
 
 gulp.task("lib", function() {
     gulp.src(paths.libs.angular).pipe(gulp.dest(webroot + "/lib/@angular"));
+    gulp.src([
+        paths.libs.angular_material + 'js',
+        paths.libs.angular_material + 'css'
+    ]).pipe(gulp.dest(webroot + "/lib/@angular/material"));
+    
     gulp.src(paths.libs.rxjs).pipe(gulp.dest(webroot + "/lib/rxjs"));
     gulp.src(paths.libs.others).pipe(gulp.dest(webroot + "/lib/"));
 });
