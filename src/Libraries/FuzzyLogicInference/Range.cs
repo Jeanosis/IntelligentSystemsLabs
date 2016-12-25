@@ -27,6 +27,12 @@ namespace Libraries.FuzzyLogicInference
         public bool IsEmpty { get { return LowerBoundary > UpperBoundary; } }
 
         /// <summary>
+        /// The length of the range.
+        /// </summary>
+        /// <returns> Returns the length of the range. </returns>
+        public double Length { get { return Math.Max(UpperBoundary - LowerBoundary, 0); } }
+
+        /// <summary>
         /// Constructs the range representation.
         /// </summary>
         /// <param name="from"> The lower boundary of the range. </param>

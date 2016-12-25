@@ -10,7 +10,7 @@ namespace WebApplication.Controllers
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true, Duration = -1)]
     public class TaskController : Controller
     {
-        private readonly double DEFAULT_GRAPHING_STEP = 0.05;
+        private readonly int DEFAULT_NUMBER_OF_GRAPH_POINTS = 300;
 
         [Route("api/task/solve")]
         [AcceptVerbs("POST")]
@@ -26,7 +26,7 @@ namespace WebApplication.Controllers
                 );
 
             var solution = task.Solve(inputs);
-            var solutionModel = Parser.SolutionToModel(solution, DEFAULT_GRAPHING_STEP);
+            var solutionModel = Parser.SolutionToModel(solution, DEFAULT_NUMBER_OF_GRAPH_POINTS);
             
             return Ok(solutionModel);
         }

@@ -56,6 +56,19 @@ namespace Libraries.JsonParser
 
         public static IDictionary<string, Models.OutputParameterSolution> SolutionToModel(
             IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> solution,
+            int numberOfGraphPoints)
+        {
+            return solution.ToDictionary(
+                s => s.Parameter.Name,
+                s => new Models.OutputParameterSolution {
+                        gravity_center = s.GravityCenter,
+                        graph = BuildGraph(s, s.Parameter.Range.Length / numberOfGraphPoints)
+                    }
+            );
+        }
+
+        public static IDictionary<string, Models.OutputParameterSolution> SolutionToModel(
+            IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> solution,
             double graphingStep)
         {
             return solution.ToDictionary(
