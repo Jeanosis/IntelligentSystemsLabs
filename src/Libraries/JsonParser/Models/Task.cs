@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JsonParser.Models
 {
-    internal class Task
+    public class Task
     {
         public string name { get; set; }
         public List<Parameter> in_vars { get; set; }

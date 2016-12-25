@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JsonParser.Models
 {
-    internal class Rule
+    public class Rule
     {
         public Expression expr { get; set; }
         public string var_name { get; set; }
