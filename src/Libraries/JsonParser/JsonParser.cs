@@ -10,26 +10,34 @@ namespace Libraries.JsonParser
         public static FuzzyLogicInference.Task TaskFromJson(string json)
         {
             var taskModel = JsonConvert.DeserializeObject<Models.Task>(json);
-
+            return TaskFromModel(taskModel);
+        }
+        
+        public static FuzzyLogicInference.Task TaskFromModel(Models.Task taskModel)
+        {
             var inVars = taskModel.in_vars.Select(ConvertModelToParameter).ToList();
             var outVars = taskModel.out_vars.Select(ConvertModelToParameter).ToList();
             var rules = taskModel.rules.Select(rule => ConvertModelToRule(rule, inVars, outVars)).ToList();
 
             return new FuzzyLogicInference.Task(taskModel.name, inVars, outVars, rules);
         }
-        
+
         public static string TaskToJson(FuzzyLogicInference.Task task) => TaskToJson(task, true);
 
         public static string TaskToJson(FuzzyLogicInference.Task task, bool indentSubobjects)
         {
-            var taskModel = new Models.Task {
+            var taskModel = TaskToModel(task);
+            return JsonConvert.SerializeObject(taskModel, indentSubobjects ? Formatting.Indented : Formatting.None);
+        }
+
+        public static Models.Task TaskToModel(FuzzyLogicInference.Task task)
+        {
+            return new Models.Task {
                 name = task.Name,
                 in_vars = task.InputParameters.Select(ConvertParameterToModel).ToList(),
                 out_vars = task.OutputParameters.Select(ConvertParameterToModel).ToList(),
                 rules = task.Rules.Select(ConvertRuleToModel).ToList()
             };
-
-            return JsonConvert.SerializeObject(taskModel, indentSubobjects ? Formatting.Indented : Formatting.None);
         }
 
         public static IDictionary<FuzzyLogicInference.Parameter, double> InputsFromJson(FuzzyLogicInference.Task task, string json)
@@ -46,13 +54,48 @@ namespace Libraries.JsonParser
                 .ToDictionary(tuple => tuple.Item1, tuple => tuple.Item2);
         }
 
-        public static string SolutionToJson(IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> results) =>
-            SolutionToJson(results, true);
-
-        public static string SolutionToJson(IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> results, bool indented)
+        public static IDictionary<string, Models.OutputParameterSolution> SolutionToModel(
+            IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> solution,
+            int numberOfGraphPoints)
         {
-            var dict = results.ToDictionary(r => r.Parameter.Name, r => r.GravityCenter);
-            return JsonConvert.SerializeObject(dict, indented ? Formatting.Indented : Formatting.None);
+            return solution.ToDictionary(
+                s => s.Parameter.Name,
+                s => new Models.OutputParameterSolution {
+                        gravity_center = s.GravityCenter,
+                        graph = BuildGraph(s, s.Parameter.Range.Length / numberOfGraphPoints)
+                    }
+            );
+        }
+
+        public static IDictionary<string, Models.OutputParameterSolution> SolutionToModel(
+            IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> solution,
+            double graphingStep)
+        {
+            return solution.ToDictionary(
+                s => s.Parameter.Name,
+                s => new Models.OutputParameterSolution { gravity_center = s.GravityCenter, graph = BuildGraph(s, graphingStep) }
+            );
+        }
+
+        private static Models.OutputParameterSolution.Graph BuildGraph(
+            FuzzyLogicInference.Task.OutputParameterSolution oneVariableSolution,
+            double graphingStep)
+        {
+            var graphValues = oneVariableSolution.Parameter.Range
+                .EnumerateWithStep(graphingStep)
+                .Select(oneVariableSolution.ParameterDistribution)
+                .ToList();
+            
+            return new Models.OutputParameterSolution.Graph { values = graphValues, step = graphingStep };
+        }
+
+        public static string SolutionToJson(IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> results, double graphingStep) =>
+            SolutionToJson(results, graphingStep, true);
+
+        public static string SolutionToJson(IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> results, double graphingStep, bool indented)
+        {
+            var model = SolutionToModel(results, graphingStep);
+            return JsonConvert.SerializeObject(model, indented ? Formatting.Indented : Formatting.None);
         }
 
         private static FuzzyLogicInference.Parameter ConvertModelToParameter(Models.Parameter parameterModel)
