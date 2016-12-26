@@ -1,5 +1,13 @@
 import { ClassParams } from './class-params.model';
 
+export enum ClassTypes {
+    triangular,
+    trapezoidal,
+    gaussian,
+    generalised_bell,
+    sigmoid_diff
+}
+
 /**
  * Class of Input/Output parameters.
  * 
@@ -14,13 +22,13 @@ export class Class {
      * 
      * @memberOf Class
      */
-    constructor(options: { name?: string, type?: string, params?: ClassParams } = {}) {
+    constructor(options: { name?: string, type?: ClassTypes, params?: ClassParams } = {}) {
         this.name = options.name || '';
-        this.type = options.type || '';
+        this.type = options.type || null;
         this.params = options.params || new ClassParams();
     }
 
     name: string;
-    type: string;//"trapezoidal"
+    type: ClassTypes;
     params: ClassParams;
 }
