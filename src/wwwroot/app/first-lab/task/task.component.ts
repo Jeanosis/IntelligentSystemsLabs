@@ -19,7 +19,8 @@ export class TaskComponent extends OnInit {
 
     ngOnInit(): void {
         var task = Cookie.get('task');
-        this.task = task == 'null' ? new Task() : JSON.parse(task);
+        console.log('Task', task);
+        this.task = task == null ? this.task : JSON.parse(task);
     }
 
     goToSolution(): void {
@@ -42,5 +43,5 @@ export class TaskComponent extends OnInit {
     }
 
     buttonState: boolean = false;
-    task: Task;
+    task: Task = new Task();
 }
