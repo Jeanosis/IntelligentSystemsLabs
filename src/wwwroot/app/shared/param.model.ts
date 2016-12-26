@@ -27,11 +27,10 @@ export class Param {
         to?: number,
         classes?: Class[]
     } = {}) {
-
-        this.name = options.name;
-        this.value = options.value;
+        this.name = options.name || '';
+        this.value = options.value || 0;
         this.from = options.from || 0;
-        this.to = options.to || 100;
+        this.to = options.to || 0;
         this.classes = options.classes || [];
     }
 
