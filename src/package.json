@@ -1,6 +1,6 @@
 {
   "name": "is_labs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "start": "concurrently \"npm run tsc:w\" \"npm run dotnet:w\" ",

@@ -7,10 +7,11 @@
     color: white;
     text-align: center;
     padding: 0;
-    /*animation-duration: 3s;
-  animation-name: slidein;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;*/
+}
+
+.fab:focus {
+    outline: none !important;
+    outline-style: none !important;
 }
 
 .sync-progress {
