@@ -23,18 +23,27 @@ var paths = {
         webroot + "app/**/*.map"
     ],
     libs: {
-        angular: [
-            angular + "core/bundles/core.umd.js",
-            angular + "common/bundles/common.umd.js",
-            angular + "compiler/bundles/compiler.umd.js",
-            angular + "platform-browser/bundles/platform-browser.umd.js",
-            angular + "platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js",
-            angular + "http/bundles/http.umd.js",
-            angular + "router/bundles/router.umd.js",
-            angular + "forms/bundles/forms.umd.js"/*,
-            angular + "material/bundles/material.umd.js"*/
-        ],
-        angular_material: angular + "material/**/*.",
+        angular: {
+            bundles: [
+                angular + "core/bundles/core.umd.js",
+                angular + "common/bundles/common.umd.js",
+                angular + "compiler/bundles/compiler.umd.js",
+                angular + "platform-browser/bundles/platform-browser.umd.js",
+                angular + "platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js",
+                angular + "http/bundles/http.umd.js",
+                angular + "router/bundles/router.umd.js",
+                angular + "forms/bundles/forms.umd.js"
+            ],
+            material: {
+                bundle: angular + "material/bundles/material.umd.js",
+                themes: angular + "material/core/theming/prebuilt/**/*.css"
+            },
+            cookies: "./node_modules/ng2-cookies/**/*.js"
+        },
+        angular_material: {
+            bundle: angular + "material/bundles/material.umd.js",
+            themes: angular + "material/core/theming/prebuilt/**/*.css"
+        },
         rxjs: "node_modules/rxjs/**/*.js",
         others: [
             "node_modules/zone.js/dist/zone.js",
@@ -45,14 +54,16 @@ var paths = {
 };
 
 gulp.task("lib", function() {
-    gulp.src(paths.libs.angular).pipe(gulp.dest(webroot + "/lib/@angular"));
-    gulp.src([
-        paths.libs.angular_material + 'js',
-        paths.libs.angular_material + 'css'
-    ]).pipe(gulp.dest(webroot + "/lib/@angular/material"));
-    
-    gulp.src(paths.libs.rxjs).pipe(gulp.dest(webroot + "/lib/rxjs"));
-    gulp.src(paths.libs.others).pipe(gulp.dest(webroot + "/lib/"));
+    var lib_path = webroot + "/lib/";
+    var angular_paths = paths.libs.angular;
+
+    gulp.src(angular_paths.bundles).pipe(gulp.dest(lib_path + "@angular"));
+    gulp.src(angular_paths.material.bundle).pipe(gulp.dest(lib_path + "@angular/material"));
+    gulp.src(angular_paths.material.themes).pipe(gulp.dest(lib_path + "@angular/material/themes"));
+    gulp.src(angular_paths.cookies).pipe(gulp.dest(lib_path + "@angular/cookies"));
+
+    gulp.src(paths.libs.rxjs).pipe(gulp.dest(lib_path + "rxjs"));
+    gulp.src(paths.libs.others).pipe(gulp.dest(lib_path));
 });
 
 gulp.task("clean:app_scripts", function () {

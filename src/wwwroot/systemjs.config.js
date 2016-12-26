@@ -18,7 +18,7 @@
             '@angular/http': 'lib:@angular/http.umd.js',
             '@angular/router': 'lib:@angular/router.umd.js',
             '@angular/forms': 'lib:@angular/forms.umd.js',
-            '@angular/material': 'lib:@angular/material.umd.js',
+            '@angular/material': 'lib:@angular/material/material.umd.js',
             // other libraries
             'rxjs': 'lib:rxjs'
         },
@@ -30,10 +30,7 @@
             },
             rxjs: {
                 defaultExtension: 'js'
-            }/*,
-            '@angular/material': {
-                defaultExtension: 'js'
-            }*/
+            }
         }
     });
 })(this);

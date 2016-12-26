@@ -1,9 +1,13 @@
+<md-input placeholder="Task Name" [(ngModel)]="task.name" style="width: 100%"></md-input>
+<button class="btn fab" (click)="saveToCookies($event)">
+    <md-icon [ngClass]="{'sync-progress': buttonState}">sync</md-icon>
+</button>
 <md-tab-group>
     <md-tab label="Input params">
         <task-input>Loading...</task-input>
     </md-tab>
     <md-tab label="Output params">
-        Content 2
+        <md-icon>home</md-icon>Content 2
     </md-tab>
     <md-tab label="Rules">
         Rules

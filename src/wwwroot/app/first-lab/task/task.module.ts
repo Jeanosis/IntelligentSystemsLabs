@@ -12,7 +12,7 @@ import { PersonService, Person }    from './person.service';
     imports: [
         CommonModule,
         FormsModule,
-        MaterialModule.forRoot(),
+        MaterialModule,
         TaskRoutingModule,
         TaskInputParamsModule
     ],
