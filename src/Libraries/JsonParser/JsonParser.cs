@@ -54,27 +54,33 @@ namespace Libraries.JsonParser
                 .ToDictionary(tuple => tuple.Item1, tuple => tuple.Item2);
         }
 
-        public static IDictionary<string, Models.OutputParameterSolution> SolutionToModel(
+        public static IList<Models.OutputParameterSolution> SolutionToModel(
             IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> solution,
             int numberOfGraphPoints)
         {
-            return solution.ToDictionary(
-                s => s.Parameter.Name,
-                s => new Models.OutputParameterSolution {
-                        gravity_center = s.GravityCenter,
-                        graph = BuildGraph(s, s.Parameter.Range.Length / numberOfGraphPoints)
-                    }
-            );
+            return solution
+                .Select(s => OneVariableSolutionToModel(s, s.Parameter.Range.Length / numberOfGraphPoints))
+                .ToList();
         }
 
-        public static IDictionary<string, Models.OutputParameterSolution> SolutionToModel(
+        public static IList<Models.OutputParameterSolution> SolutionToModel(
             IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> solution,
             double graphingStep)
         {
-            return solution.ToDictionary(
-                s => s.Parameter.Name,
-                s => new Models.OutputParameterSolution { gravity_center = s.GravityCenter, graph = BuildGraph(s, graphingStep) }
-            );
+            return solution
+                .Select(s => OneVariableSolutionToModel(s, graphingStep))
+                .ToList();
+        }
+
+        private static Models.OutputParameterSolution OneVariableSolutionToModel(
+            FuzzyLogicInference.Task.OutputParameterSolution solution,
+            double graphingStep)
+        {
+            return new Models.OutputParameterSolution {
+                name = solution.Parameter.Name,
+                gravity_center = solution.GravityCenter,
+                graph = BuildGraph(solution, graphingStep)
+            };
         }
 
         private static Models.OutputParameterSolution.Graph BuildGraph(
