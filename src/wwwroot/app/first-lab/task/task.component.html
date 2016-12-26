@@ -4,7 +4,8 @@
 </button>
 <md-tab-group>
     <md-tab label="Input params">
-        <task-input>Loading...</task-input>
+        <task-input *ngFor="let item of task.in_vars; let i = index" [index]="i" [param]="item"></task-input>
+        <button class="btn btn-primary" (click)="addInputParam()"><md-icon>add</md-icon> Add param</button>
     </md-tab>
     <md-tab label="Output params">
         <md-icon>home</md-icon>Content 2

@@ -5,7 +5,7 @@ import { Param } from '../../../shared/param.model';
 
 @Component({
     moduleId: module.id,
-    selector: 'task-input',
+    selector: 'task-input-p',
     templateUrl: 'task-input-params.component.html'
 })
 export class TaskInputParamsComponent extends OnInit {

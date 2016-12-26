@@ -4,11 +4,14 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { InputParamService } from '../../shared/input-param.service';
 
 import { Task } from '../../shared/task.model';
+import { Param } from '../../shared/param.model';
 
 @Component({
     moduleId: module.id,
     selector: 'task-panel',
+    host: { class: 'layer-shadow-3' },
     templateUrl: './task.component.html',
+    styleUrls: ['./task.component.css'],
     providers: [InputParamService]
 })
 export class TaskComponent extends OnInit {
@@ -19,12 +22,15 @@ export class TaskComponent extends OnInit {
 
     ngOnInit(): void {
         var task = Cookie.get('task');
-        console.log('Task', task);
         this.task = task == null ? this.task : JSON.parse(task);
     }
 
     goToSolution(): void {
         this.router.navigate(['../solution'], { relativeTo: this.r });
+    }
+
+    addInputParam(): void {
+        this.task.in_vars.push(new Param());
     }
 
     saveToCookies() {

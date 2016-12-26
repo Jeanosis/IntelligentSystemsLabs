@@ -1,3 +1,48 @@
+/*general*/
+.panel {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 16px;
+    background-color: white;
+    border: 1px solid green;
+    margin-bottom: 1px;
+}
+
+.panel-container {
+    border-radius: 2px;
+}
+/*delete?*/
+.expandable {
+    transition: margin 1s ease-out;
+    -o-transition: margin 1s ease-out;
+    -moz-transition: margin 1s ease-out;
+    -webkit-transition: margin 1s ease-out;
+}
+
+.expanded {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+/*Layers shadows*/
+.layer-shadow-1 {
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.layer-shadow-2 {
+    box-shadow: 0 2.5px 3.2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2.5px 3.2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 2.5px 3.2px rgba(0, 0, 0, 0.3);
+}
+
+.layer-shadow-3 {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
+}
+/*FAB*/
 .fab {
     width: 56px;
     height: 56px;
