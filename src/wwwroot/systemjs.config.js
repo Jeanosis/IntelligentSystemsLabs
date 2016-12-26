@@ -20,6 +20,7 @@
             '@angular/forms': 'lib:@angular/forms.umd.js',
             '@angular/material': 'lib:@angular/material/material.umd.js',
             // other libraries
+            'ng2-cookies': 'lib:@angular/cookies',
             'rxjs': 'lib:rxjs'
         },
         // packages tells the System loader how to load when no filename and/or no extension
@@ -28,12 +29,13 @@
                 main: '../main.js',
                 defaultExtension: 'js'
             },
+            'ng2-cookies': {
+                main: 'ng2-cookies.js',
+                defaultExtension: 'js'
+            },
             rxjs: {
                 defaultExtension: 'js'
-            }/*,
-            '@angular/material': {
-                defaultExtension: 'js'
-            }*/
+            }
         }
     });
 })(this);
