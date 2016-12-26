@@ -18,8 +18,9 @@
             '@angular/http': 'lib:@angular/http.umd.js',
             '@angular/router': 'lib:@angular/router.umd.js',
             '@angular/forms': 'lib:@angular/forms.umd.js',
+            '@angular/material': 'lib:@angular/material.umd.js',
             // other libraries
-            'rxjs': 'lib:rxjs',
+            'rxjs': 'lib:rxjs'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -29,7 +30,10 @@
             },
             rxjs: {
                 defaultExtension: 'js'
-            }
+            }/*,
+            '@angular/material': {
+                defaultExtension: 'js'
+            }*/
         }
     });
 })(this);
