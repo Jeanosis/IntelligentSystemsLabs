@@ -18,21 +18,23 @@ export class TaskComponent extends OnInit {
     }
 
     ngOnInit(): void {
-        this.task = new Task();
-        this.task.name = 'lol';
-        Cookie.set('task', JSON.stringify(this.task));
-        console.log(Cookie.get('task1'));
-        var task2 = JSON.parse(Cookie.get('task1'));
-        console.log('after cookies', JSON.stringify(task2));
+        var task = Cookie.get('task');
+        this.task = task == 'null' ? new Task() : JSON.parse(task);
     }
 
     goToSolution(): void {
         this.router.navigate(['../solution'], { relativeTo: this.r });
     }
 
-    saveToCookies(event: any) {
-        
-        this.changeAnimationState();
+    saveToCookies() {
+        if (this.buttonState)
+            return;
+
+        this.buttonState = true;
+        Cookie.set('task', JSON.stringify(this.task));
+        setTimeout(() => {
+            this.changeAnimationState();
+        }, 2000);
     }
 
     changeAnimationState() {
