@@ -1,10 +1,25 @@
 import { Class } from './class.model';
-/*export interface InputParam {
-    name: string;
-    from: number;
-    to: number;
-}*/
+
+/**
+ * Parameter of Task
+ * 
+ * @export
+ * @class Param
+ */
 export class Param {
+    /**
+     * Creates an instance of Param.
+     * 
+     * @param {{
+     *         name?: string,
+     *         value?: number,
+     *         from?: number,
+     *         to?: number,
+     *         classes?: Class[]
+     *     }} [options={}]
+     * 
+     * @memberOf Param
+     */
     constructor(options: {
         name?: string,
         value?: number,
@@ -12,6 +27,7 @@ export class Param {
         to?: number,
         classes?: Class[]
     } = {}) {
+
         this.name = options.name;
         this.value = options.value;
         this.from = options.from || 0;
