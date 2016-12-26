@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { InputParamService } from '../../shared/input-param.service';
 
 import { Task } from '../../shared/task.model';
@@ -19,6 +20,10 @@ export class TaskComponent extends OnInit {
     ngOnInit(): void {
         this.task = new Task();
         this.task.name = 'lol';
+        Cookie.set('task', JSON.stringify(this.task));
+        console.log(Cookie.get('task1'));
+        var task2 = JSON.parse(Cookie.get('task1'));
+        console.log('after cookies', JSON.stringify(task2));
     }
 
     goToSolution(): void {
