@@ -10,7 +10,7 @@ namespace Libraries.JsonParser.Models
     {
         public enum Type
         {
-            Triangular = 0,
+            Triangular = 1,
             Trapezoidal,
             Gaussian,
             GeneralisedBell,

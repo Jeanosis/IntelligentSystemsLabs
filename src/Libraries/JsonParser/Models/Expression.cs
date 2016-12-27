@@ -10,7 +10,7 @@ namespace Libraries.JsonParser.Models
     {
         public enum Type
         {
-            Neg = 0,
+            Neg = 1,
             State,
             And,
             Or

@@ -22,23 +22,18 @@ export class TaskService {
     }
 
     protected handlePromiseError(error: any): Promise<void> {
-        console.log("Handling a error...");
+        try {
+            error = JSON.parse(error._body);
+        } catch(e) { }
 
-        // try {
-        //     error = JSON.parse(error._body);
-        // } catch(e) { }
+        let errorMessage =
+            error.errorMessage ? error.errorMessage
+                : error.message ? error.message
+                    : error._body ? error._body
+                        : error.status ? `${error.status} - ${error.statusText}`
+                            : "Unknown server error";
 
-        // console.log("Handling a error 2");
-
-        // let errorMessage =
-        //     error.errorMessage ? error.errorMessage
-        //         : error.message ? error.message
-        //             : error._body ? error._body
-        //                 : error.status ? `${error.status} - ${error.statusText}`
-        //                     : "Unknown server error";
-
-        // console.log(`The error is: ${error.errorMessage}`);
-        return Promise.reject(error);
+        return Promise.reject(errorMessage);
     }
     
 }

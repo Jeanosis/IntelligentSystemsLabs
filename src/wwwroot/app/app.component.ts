@@ -43,6 +43,7 @@ export class AppComponent extends OnInit {
                     name: "temperature",
                     from: 0,
                     to: 175,
+                    value: 80,
                     classes: [
                         new Class({
                             name: "low",
@@ -80,6 +81,7 @@ export class AppComponent extends OnInit {
                     name: "fuel_consumption",
                     from: 0,
                     to: 8,
+                    value: 3.5,
                     classes: [
                         new Class({
                             name: "low",
