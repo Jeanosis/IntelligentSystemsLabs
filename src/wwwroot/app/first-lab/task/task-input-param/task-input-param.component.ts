@@ -18,10 +18,16 @@ export class TaskInputParamComponent extends OnInit {
         //
     }
 
+    changeExpandState(event: any): void {
+        event.currentTarget.style.transform = `rotate(${ this.expandState ? '0deg' : '-180deg' })`;
+        this.expandState = !this.expandState;
+    }
+
     addTaskClass(): void {
         this.inputParam.classes.push(new Class());
     }
 
+    expandState: boolean = false;
     @Input() index: number = 0;
     @Input('param') inputParam: Param = new Param();
 }

@@ -23,6 +23,10 @@ export class TaskComponent extends OnInit {
     ngOnInit(): void {
         var task = Cookie.get('task');
         this.task = task == null ? this.task : JSON.parse(task);
+
+        this.taskJson = JSON.stringify(this.task, null, 15);
+        this.taskJson = this.taskJson.replace(/[\r\n]/g, '<br/>');
+        this.taskJson = this.taskJson.replace(/[ ]/g, '&nbsp');
     }
 
     goToSolution(): void {
@@ -41,6 +45,10 @@ export class TaskComponent extends OnInit {
         Cookie.set('task', JSON.stringify(this.task));
         setTimeout(() => {
             this.changeAnimationState();
+            
+            this.taskJson = JSON.stringify(this.task, null, 15);
+            this.taskJson = this.taskJson.replace(/[\r\n]/g, '<br/>');
+            this.taskJson = this.taskJson.replace(/[ ]/g, '&nbsp');
         }, 2000);
     }
 
@@ -48,6 +56,7 @@ export class TaskComponent extends OnInit {
         this.buttonState = !this.buttonState;
     }
 
+    taskJson: string = '';
     buttonState: boolean = false;
     task: Task = new Task();
 }
