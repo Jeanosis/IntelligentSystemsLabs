@@ -1,5 +1,5 @@
 export enum ExpressionTypes {
-    neg,
+    neg = 0,
     state,
     and,
     or

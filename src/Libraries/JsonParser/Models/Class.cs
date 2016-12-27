@@ -8,8 +8,17 @@ namespace Libraries.JsonParser.Models
 {
     public class Class
     {
+        public enum Type
+        {
+            Triangular = 0,
+            Trapezoidal,
+            Gaussian,
+            GeneralisedBell,
+            SigmoidDiff
+        }
+
         public string name { get; set; }
-        public string type { get; set; }
+        public Class.Type type { get; set; }
         public Dictionary<string, double> @params { get; set; }
     }
 }

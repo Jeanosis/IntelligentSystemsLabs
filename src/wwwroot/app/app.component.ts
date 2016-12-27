@@ -6,27 +6,37 @@ import { ClassParams } from './shared/class-params.model';
 import { Rule } from './shared/rule.model';
 import { RuleExpression, ExpressionTypes } from './shared/rule-expression.model';
 
+import { TaskService } from './first-lab/task/task.service';
+
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/app.component.html',
-    styleUrls: ['./app/app.component.css']/*,
+    styleUrls: ['./app/app.component.css'],
     providers: [
-        PersonService
-    ]*/
+        TaskService
+    ]
 })
 
 export class AppComponent extends OnInit {
 
-    constructor() {
+    constructor(private service: TaskService) {
         super();
     }
 
     ngOnInit() {
+        let task: Task = this.createTestTask();
+        console.log(task);
 
+        this.service
+            .solveTask(task)
+            .then(console.log)
+            .catch(error =>
+                console.log(`Server error: ${error}`));
     }
-    /* Model's test
-        let task: Task = new Task({
+
+    private createTestTask(): Task {
+        return new Task({
             name: "engine_pressure",
             in_vars: [
                 new Param({
@@ -183,8 +193,5 @@ export class AppComponent extends OnInit {
                 })
             ]
         });
-
-        console.log(task);
     }
-    */
 }

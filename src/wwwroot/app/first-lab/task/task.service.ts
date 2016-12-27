@@ -15,25 +15,30 @@ export class TaskService {
         headers.append("ContentType", "application/json");
         
         return this._http
-            .post('./api/task/solve', JSON.stringify(task), { headers: headers })
+            .post('/api/task/solve', task, { headers: headers })
             .toPromise()
             .then(response => response.json() || [])
             .catch(this.handlePromiseError);
     }
 
     protected handlePromiseError(error: any): Promise<void> {
-        try {
-            error = JSON.parse(error._body);
-        } catch(e) { }
+        console.log("Handling a error...");
 
-        let errorMessage =
-            error.errorMessage ? error.errorMessage
-                : error.message ? error.message
-                    : error._body ? error._body
-                        : error.status ? `${error.status} - ${error.statusText}`
-                            : "Unknown server error";
+        // try {
+        //     error = JSON.parse(error._body);
+        // } catch(e) { }
 
-        return Promise.reject(errorMessage);
+        // console.log("Handling a error 2");
+
+        // let errorMessage =
+        //     error.errorMessage ? error.errorMessage
+        //         : error.message ? error.message
+        //             : error._body ? error._body
+        //                 : error.status ? `${error.status} - ${error.statusText}`
+        //                     : "Unknown server error";
+
+        // console.log(`The error is: ${error.errorMessage}`);
+        return Promise.reject(error);
     }
     
 }
