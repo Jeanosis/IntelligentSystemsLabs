@@ -1,16 +1,32 @@
 /*general*/
 .panel {
     display: block;
-    width: 100%;
+    width: 98%;
     height: auto;
     padding: 16px;
     background-color: white;
-    border: 1px solid green;
-    margin-bottom: 1px;
+    /*border: 1px solid green;*/
+    border-bottom: 1px solid #FAFAFA;
 }
 
 .panel-container {
     border-radius: 2px;
+}
+
+.panel-container-top {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.panel-container-bottom {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.tab-margin {
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
 }
 /*delete?*/
 .expandable {
@@ -26,21 +42,21 @@
 }
 /*Layers shadows*/
 .layer-shadow-1 {
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 3px 0.5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 3px 0.5px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 2px 3px 0.5px rgba(0, 0, 0, 0.3);
 }
 
 .layer-shadow-2 {
-    box-shadow: 0 2.5px 3.2px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 2.5px 3.2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 2.5px 3.2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2.5px 3.2px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2.5px 3.2px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 2.5px 3.2px 1px rgba(0, 0, 0, 0.3);
 }
 
 .layer-shadow-3 {
-    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.3);
 }
 /*FAB*/
 .fab {

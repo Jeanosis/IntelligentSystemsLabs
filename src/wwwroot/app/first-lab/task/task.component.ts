@@ -9,7 +9,7 @@ import { Param } from '../../shared/param.model';
 @Component({
     moduleId: module.id,
     selector: 'task-panel',
-    host: { class: 'layer-shadow-3' },
+/*host: { class: 'layer-shadow-3' },*/
     templateUrl: './task.component.html',
     styleUrls: ['./task.component.css'],
     providers: [InputParamService]
