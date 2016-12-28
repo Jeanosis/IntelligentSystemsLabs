@@ -14,7 +14,7 @@ namespace WebApplication.Controllers
 
         [Route("api/task/solve")]
         [HttpPost]
-        public ActionResult Solve([FromBody] Libraries.JsonParser.Models.Task taskModel)
+        public ActionResult Solve([FromBody] WebApplication.Models.Task taskModel)
         {
             var task = Parser.TaskFromModel(taskModel);
             var inputs = Parser.InputsFromModel(task, taskModel);

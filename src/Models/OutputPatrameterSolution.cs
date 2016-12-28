@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Libraries.JsonParser.Models
+namespace WebApplication.Models
 {
     public class OutputParameterSolution
     {

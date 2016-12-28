@@ -9,11 +9,11 @@ namespace Libraries.JsonParser
     {
         public static FuzzyLogicInference.Task TaskFromJson(string json)
         {
-            var taskModel = JsonConvert.DeserializeObject<Models.Task>(json);
+            var taskModel = JsonConvert.DeserializeObject<WebApplication.Models.Task>(json);
             return TaskFromModel(taskModel);
         }
         
-        public static FuzzyLogicInference.Task TaskFromModel(Models.Task taskModel)
+        public static FuzzyLogicInference.Task TaskFromModel(WebApplication.Models.Task taskModel)
         {
             var inVars = taskModel.in_vars.Select(ConvertModelToParameter).ToList();
             var outVars = taskModel.out_vars.Select(ConvertModelToParameter).ToList();
@@ -30,9 +30,9 @@ namespace Libraries.JsonParser
             return JsonConvert.SerializeObject(taskModel, indentSubobjects ? Formatting.Indented : Formatting.None);
         }
 
-        public static Models.Task TaskToModel(FuzzyLogicInference.Task task)
+        public static WebApplication.Models.Task TaskToModel(FuzzyLogicInference.Task task)
         {
-            return new Models.Task {
+            return new WebApplication.Models.Task {
                 name = task.Name,
                 in_vars = task.InputParameters.Select(ConvertParameterToModel).ToList(),
                 out_vars = task.OutputParameters.Select(ConvertParameterToModel).ToList(),
@@ -40,7 +40,7 @@ namespace Libraries.JsonParser
             };
         }
 
-        public static IDictionary<FuzzyLogicInference.Parameter, double> InputsFromModel(FuzzyLogicInference.Task task, Models.Task taskModel)
+        public static IDictionary<FuzzyLogicInference.Parameter, double> InputsFromModel(FuzzyLogicInference.Task task, WebApplication.Models.Task taskModel)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace Libraries.JsonParser
             }
         }
 
-        public static IList<Models.OutputParameterSolution> SolutionToModel(
+        public static IList<WebApplication.Models.OutputParameterSolution> SolutionToModel(
             IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> solution,
             int numberOfGraphPoints)
         {
@@ -67,7 +67,7 @@ namespace Libraries.JsonParser
                 .ToList();
         }
 
-        public static IList<Models.OutputParameterSolution> SolutionToModel(
+        public static IList<WebApplication.Models.OutputParameterSolution> SolutionToModel(
             IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> solution,
             double graphingStep)
         {
@@ -76,18 +76,18 @@ namespace Libraries.JsonParser
                 .ToList();
         }
 
-        private static Models.OutputParameterSolution OneVariableSolutionToModel(
+        private static WebApplication.Models.OutputParameterSolution OneVariableSolutionToModel(
             FuzzyLogicInference.Task.OutputParameterSolution solution,
             double graphingStep)
         {
-            return new Models.OutputParameterSolution {
+            return new WebApplication.Models.OutputParameterSolution {
                 name = solution.Parameter.Name,
                 gravity_center = solution.GravityCenter,
                 graph = BuildGraph(solution, graphingStep)
             };
         }
 
-        private static Models.OutputParameterSolution.Graph BuildGraph(
+        private static WebApplication.Models.OutputParameterSolution.Graph BuildGraph(
             FuzzyLogicInference.Task.OutputParameterSolution oneVariableSolution,
             double graphingStep)
         {
@@ -96,7 +96,7 @@ namespace Libraries.JsonParser
                 .Select(oneVariableSolution.ParameterDistribution)
                 .ToList();
             
-            return new Models.OutputParameterSolution.Graph { values = graphValues, step = graphingStep };
+            return new WebApplication.Models.OutputParameterSolution.Graph { values = graphValues, step = graphingStep };
         }
 
         public static string SolutionToJson(IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> results, double graphingStep) =>
@@ -108,7 +108,7 @@ namespace Libraries.JsonParser
             return JsonConvert.SerializeObject(model, indented ? Formatting.Indented : Formatting.None);
         }
 
-        private static FuzzyLogicInference.Parameter ConvertModelToParameter(Models.Parameter parameterModel)
+        private static FuzzyLogicInference.Parameter ConvertModelToParameter(WebApplication.Models.Parameter parameterModel)
         {
             var range = new FuzzyLogicInference.Range(parameterModel.from, parameterModel.to);
             var classes = parameterModel.classes.Select(ConvertModelToClass).ToList();
@@ -116,11 +116,11 @@ namespace Libraries.JsonParser
             return new FuzzyLogicInference.Parameter(parameterModel.name, range, classes);
         }
 
-        private static FuzzyLogicInference.Classes.Class ConvertModelToClass(Models.Class classModel)
+        private static FuzzyLogicInference.Classes.Class ConvertModelToClass(WebApplication.Models.Class classModel)
         {
             switch (classModel.type)
             {
-                case Models.Class.Type.Triangular:
+                case WebApplication.Models.Class.Type.Triangular:
                     return new FuzzyLogicInference.Classes.ClassWithTriangularMF(
                         classModel.name,
                         classModel.@params[MF_TRIANGULAR_A],
@@ -128,7 +128,7 @@ namespace Libraries.JsonParser
                         classModel.@params[MF_TRIANGULAR_C]
                     );
 
-                case Models.Class.Type.Trapezoidal:
+                case WebApplication.Models.Class.Type.Trapezoidal:
                     return new FuzzyLogicInference.Classes.ClassWithTrapezoidalMF(
                         classModel.name,
                         classModel.@params[MF_TRAPEZOIDAL_A],
@@ -137,14 +137,14 @@ namespace Libraries.JsonParser
                         classModel.@params[MF_TRAPEZOIDAL_D]
                     );
 
-                case Models.Class.Type.Gaussian:
+                case WebApplication.Models.Class.Type.Gaussian:
                     return new FuzzyLogicInference.Classes.ClassWithGaussianMF(
                         classModel.name,
                         classModel.@params[MF_GAUSSIAN_C],
                         classModel.@params[MF_GAUSSIAN_SIGMA]
                     );
             
-                case Models.Class.Type.GeneralisedBell:
+                case WebApplication.Models.Class.Type.GeneralisedBell:
                     return new FuzzyLogicInference.Classes.ClassWithGeneralisedBellMF(
                         classModel.name,
                         classModel.@params[MF_GENERALISED_BELL_A],
@@ -152,7 +152,7 @@ namespace Libraries.JsonParser
                         classModel.@params[MF_GENERALISED_BELL_C]
                     );
             
-                case Models.Class.Type.SigmoidDiff:
+                case WebApplication.Models.Class.Type.SigmoidDiff:
                     return new FuzzyLogicInference.Classes.ClassWithSigmoidDifferenceMF(
                         classModel.name,
                         classModel.@params[MF_SIGMOID_DIFF_A1],
@@ -167,7 +167,7 @@ namespace Libraries.JsonParser
         }
 
         private static FuzzyLogicInference.Rule ConvertModelToRule(
-            Models.Rule ruleModel, 
+            WebApplication.Models.Rule ruleModel, 
             IEnumerable<FuzzyLogicInference.Parameter> inputVariables, 
             IEnumerable<FuzzyLogicInference.Parameter> outputVariables
         )
@@ -190,33 +190,33 @@ namespace Libraries.JsonParser
         }
 
         private static FuzzyLogicInference.Expressions.Expression ConvertModelToExpression(
-            Models.Expression expressionModel,
+            WebApplication.Models.Expression expressionModel,
             IEnumerable<FuzzyLogicInference.Parameter> inputVariables
         )
         {
             switch (expressionModel.type)
             {
-                case Models.Expression.Type.And:
+                case WebApplication.Models.Expression.Type.And:
                 {
                     var left = ConvertModelToExpression(expressionModel.left, inputVariables);
                     var right = ConvertModelToExpression(expressionModel.right, inputVariables);
                     return new FuzzyLogicInference.Expressions.Conjunction(left, right);
                 }
 
-                case Models.Expression.Type.Or:
+                case WebApplication.Models.Expression.Type.Or:
                 {
                     var left = ConvertModelToExpression(expressionModel.left, inputVariables);
                     var right = ConvertModelToExpression(expressionModel.right, inputVariables);
                     return new FuzzyLogicInference.Expressions.Disjunction(left, right);
                 }
                 
-                case Models.Expression.Type.Neg:
+                case WebApplication.Models.Expression.Type.Neg:
                 {
                     var argument = ConvertModelToExpression(expressionModel.arg, inputVariables);
                     return new FuzzyLogicInference.Expressions.Negation(argument);
                 }
                 
-                case Models.Expression.Type.State:
+                case WebApplication.Models.Expression.Type.State:
                 {
                     var parameter = inputVariables.FirstOrDefault(p => p.Name == expressionModel.var_name);
                     if (parameter == null)
@@ -238,9 +238,9 @@ namespace Libraries.JsonParser
             }
         }
         
-        private static Models.Parameter ConvertParameterToModel(FuzzyLogicInference.Parameter parameter)
+        private static WebApplication.Models.Parameter ConvertParameterToModel(FuzzyLogicInference.Parameter parameter)
         {
-            return new Models.Parameter {
+            return new WebApplication.Models.Parameter {
                 name = parameter.Name,
                 from = parameter.Range.LowerBoundary,
                 to = parameter.Range.UpperBoundary,
@@ -248,13 +248,13 @@ namespace Libraries.JsonParser
             };
         }
 
-        private static Models.Class ConvertClassToModel(FuzzyLogicInference.Classes.Class clazz)
+        private static WebApplication.Models.Class ConvertClassToModel(FuzzyLogicInference.Classes.Class clazz)
         {
-            var classModel = new Models.Class { name = clazz.Name, @params = new Dictionary<string, double>() };
+            var classModel = new WebApplication.Models.Class { name = clazz.Name, @params = new Dictionary<string, double>() };
 
             if (clazz is FuzzyLogicInference.Classes.ClassWithTriangularMF)
             {
-                classModel.type = Models.Class.Type.Triangular;
+                classModel.type = WebApplication.Models.Class.Type.Triangular;
                 var classWithTriangularMF = clazz as FuzzyLogicInference.Classes.ClassWithTriangularMF;
                 classModel.@params[MF_TRIANGULAR_A] = classWithTriangularMF.A;
                 classModel.@params[MF_TRIANGULAR_B] = classWithTriangularMF.B;
@@ -262,7 +262,7 @@ namespace Libraries.JsonParser
             }
             else if (clazz is FuzzyLogicInference.Classes.ClassWithTrapezoidalMF)
             {
-                classModel.type = Models.Class.Type.Trapezoidal;
+                classModel.type = WebApplication.Models.Class.Type.Trapezoidal;
                 var classWithTrapezoidalMF = clazz as FuzzyLogicInference.Classes.ClassWithTrapezoidalMF;
                 classModel.@params[MF_TRAPEZOIDAL_A] = classWithTrapezoidalMF.A;
                 classModel.@params[MF_TRAPEZOIDAL_B] = classWithTrapezoidalMF.B;
@@ -271,14 +271,14 @@ namespace Libraries.JsonParser
             }
             else if (clazz is FuzzyLogicInference.Classes.ClassWithGaussianMF)
             {
-                classModel.type = Models.Class.Type.Gaussian;
+                classModel.type = WebApplication.Models.Class.Type.Gaussian;
                 var classWithGaussianMF = clazz as FuzzyLogicInference.Classes.ClassWithGaussianMF;
                 classModel.@params[MF_GAUSSIAN_C] = classWithGaussianMF.C;
                 classModel.@params[MF_GAUSSIAN_SIGMA] = classWithGaussianMF.Sigma;
             }
             else if (clazz is FuzzyLogicInference.Classes.ClassWithGeneralisedBellMF)
             {
-                classModel.type = Models.Class.Type.GeneralisedBell;
+                classModel.type = WebApplication.Models.Class.Type.GeneralisedBell;
                 var classWithGeneralisedBellMF = clazz as FuzzyLogicInference.Classes.ClassWithGeneralisedBellMF;
                 classModel.@params[MF_GENERALISED_BELL_A] = classWithGeneralisedBellMF.A;
                 classModel.@params[MF_GENERALISED_BELL_B] = classWithGeneralisedBellMF.B;
@@ -286,7 +286,7 @@ namespace Libraries.JsonParser
             }
             else if (clazz is FuzzyLogicInference.Classes.ClassWithSigmoidDifferenceMF)
             {
-                classModel.type = Models.Class.Type.SigmoidDiff;
+                classModel.type = WebApplication.Models.Class.Type.SigmoidDiff;
                 var classWithSigmoidDifferenceMF = clazz as FuzzyLogicInference.Classes.ClassWithSigmoidDifferenceMF;
                 classModel.@params[MF_SIGMOID_DIFF_A1] = classWithSigmoidDifferenceMF.A1;
                 classModel.@params[MF_SIGMOID_DIFF_A2] = classWithSigmoidDifferenceMF.A2;
@@ -301,42 +301,42 @@ namespace Libraries.JsonParser
             return classModel;
         }
 
-        private static Models.Rule ConvertRuleToModel(FuzzyLogicInference.Rule rule)
+        private static WebApplication.Models.Rule ConvertRuleToModel(FuzzyLogicInference.Rule rule)
         {
-            return new Models.Rule {
+            return new WebApplication.Models.Rule {
                 var_name = rule.Parameter.Name,
                 class_name = rule.Class.Name,
                 expr = ConvertExpressionToModel(rule.Expression)
             };
         }
 
-        private static Models.Expression ConvertExpressionToModel(FuzzyLogicInference.Expressions.Expression expression)
+        private static WebApplication.Models.Expression ConvertExpressionToModel(FuzzyLogicInference.Expressions.Expression expression)
         {
-            var expressionModel = new Models.Expression();
+            var expressionModel = new WebApplication.Models.Expression();
 
             if (expression is FuzzyLogicInference.Expressions.Conjunction)
             {
-                expressionModel.type = Models.Expression.Type.And;
+                expressionModel.type = WebApplication.Models.Expression.Type.And;
                 var conjunction = expression as FuzzyLogicInference.Expressions.Conjunction;
                 expressionModel.left = ConvertExpressionToModel(conjunction.LeftArgument);
                 expressionModel.right = ConvertExpressionToModel(conjunction.RightArgument);
             }
             else if (expression is FuzzyLogicInference.Expressions.Disjunction)
             {
-                expressionModel.type = Models.Expression.Type.Or;
+                expressionModel.type = WebApplication.Models.Expression.Type.Or;
                 var disjunction = expression as FuzzyLogicInference.Expressions.Disjunction;
                 expressionModel.left = ConvertExpressionToModel(disjunction.LeftArgument);
                 expressionModel.right = ConvertExpressionToModel(disjunction.RightArgument);
             }
             else if (expression is FuzzyLogicInference.Expressions.Negation)
             {
-                expressionModel.type = Models.Expression.Type.Neg;
+                expressionModel.type = WebApplication.Models.Expression.Type.Neg;
                 var negation = expression as FuzzyLogicInference.Expressions.Negation;
                 expressionModel.arg = ConvertExpressionToModel(negation.Argument);
             }
             else if (expression is FuzzyLogicInference.Expressions.MembershipStatement)
             {
-                expressionModel.type = Models.Expression.Type.State;
+                expressionModel.type = WebApplication.Models.Expression.Type.State;
                 var statement = expression as FuzzyLogicInference.Expressions.MembershipStatement;
                 expressionModel.var_name = statement.Parameter.Name;
                 expressionModel.class_name = statement.Class.Name;
