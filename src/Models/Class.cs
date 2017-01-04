@@ -4,12 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Libraries.JsonParser.Models
+namespace WebApplication.Models
 {
     public class Class
     {
+        public enum Type
+        {
+            Triangular = 1,
+            Trapezoidal,
+            Gaussian,
+            GeneralisedBell,
+            SigmoidDiff
+        }
+
         public string name { get; set; }
-        public string type { get; set; }
+        public Class.Type type { get; set; }
         public Dictionary<string, double> @params { get; set; }
     }
 }

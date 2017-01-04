@@ -1,7 +1,7 @@
 import { ClassParams } from './class-params.model';
 
 export enum ClassTypes {
-    triangular,
+    triangular = 1,
     trapezoidal,
     gaussian,
     generalised_bell,

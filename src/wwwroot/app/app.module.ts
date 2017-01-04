@@ -12,6 +12,8 @@ import { AppToolbarModule } from './app-toolbar/app-toolbar.module';
 import { AppComponent } from './app.component';
 /*import { PersonService } from './person.service';*/
 
+import { TaskService } from './first-lab/task/task.service';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -24,13 +26,13 @@ import { AppComponent } from './app.component';
         AppToolbarModule
     ],
     declarations: [AppComponent],
-    /*providers: [
-        PersonService/*,
-        {
-            provide: APP_BASE_HREF,
-            useValue: '<%= APP_BASE %>'
-        }
-    ],*/
+    providers: [
+        TaskService
+        // {
+        //     provide: APP_BASE_HREF,
+        //     useValue: '<%= APP_BASE %>'
+        // }
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule { }

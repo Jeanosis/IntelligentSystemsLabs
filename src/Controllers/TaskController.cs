@@ -13,17 +13,11 @@ namespace WebApplication.Controllers
         private readonly int DEFAULT_NUMBER_OF_GRAPH_POINTS = 300;
 
         [Route("api/task/solve")]
-        [AcceptVerbs("POST")]
-        public ActionResult Solve([FromBody] Libraries.JsonParser.Models.Task taskModel)
+        [HttpPost]
+        public ActionResult Solve([FromBody] WebApplication.Models.Task taskModel)
         {
             var task = Parser.TaskFromModel(taskModel);
-            var inputs = task.InputParameters
-                .ToDictionary(
-                    inVar => inVar,
-                    inVar => taskModel.in_vars
-                                .First(inVarModel => inVarModel.name == inVar.Name)
-                                .value
-                );
+            var inputs = Parser.InputsFromModel(task, taskModel);
 
             var solution = task.Solve(inputs);
             var solutionModel = Parser.SolutionToModel(solution, DEFAULT_NUMBER_OF_GRAPH_POINTS);
