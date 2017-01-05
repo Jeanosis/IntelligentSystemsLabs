@@ -108,10 +108,21 @@ namespace Libraries.JsonParser
             return BuildGraph(oneVariableSolution.ParameterDistribution, oneVariableSolution.Parameter.Range, graphingStep);
         }
 
-        private static WebApplication.Models.Graph BuildGraph(Func<double, double> function, FuzzyLogicInference.Range range, double graphingStep)
+        private static WebApplication.Models.Graph BuildGraph(
+            Func<double, double> function,
+            FuzzyLogicInference.Range range,
+            double graphingStep)
         {
-            var graphValues = range.EnumerateWithStep(graphingStep).Select(function).ToList();
-            return new WebApplication.Models.Graph { values = graphValues, step = graphingStep };
+            var graphValues = range
+                .EnumerateWithStep(graphingStep)
+                .Select(function)
+                .ToList();
+
+            return new WebApplication.Models.Graph {
+                values = graphValues,
+                from = range.LowerBoundary,
+                step = graphingStep
+            };
         }
 
         public static string SolutionToJson(IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> results, double graphingStep) =>
