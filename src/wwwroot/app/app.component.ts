@@ -5,6 +5,7 @@ import { Class, ClassTypes } from './shared/class.model';
 import { ClassParams } from './shared/class-params.model';
 import { Rule } from './shared/rule.model';
 import { RuleExpression, ExpressionTypes } from './shared/rule-expression.model';
+import { ClassGraphArguments } from './shared/class-graph-arguments.model';
 
 import { TaskService } from './first-lab/task/task.service';
 
@@ -33,6 +34,20 @@ export class AppComponent extends OnInit {
             .then(console.log)
             .catch(error =>
                 console.log(`Server error: ${error}`));
+
+        let graphArguments: ClassGraphArguments = new ClassGraphArguments({
+            classType: task.in_vars[0].classes[0].type,
+            params: task.in_vars[0].classes[0].params,
+            from: task.in_vars[0].from,
+            to: task.in_vars[0].to,
+            step: 0.5,
+        });
+        console.log(graphArguments);
+
+        this.service
+            .buildClassGraph(graphArguments)
+            .then(console.log)
+            .catch(error => console.log(`Server error: ${error}`));;
     }
 
     private createTestTask(): Task {

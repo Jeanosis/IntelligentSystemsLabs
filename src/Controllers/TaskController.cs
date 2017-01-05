@@ -24,5 +24,12 @@ namespace WebApplication.Controllers
             
             return Ok(solutionModel);
         }
+
+        [Route("api/task/graph")]
+        [HttpPost]
+        public ActionResult Graph([FromBody] WebApplication.Models.ClassGraphArguments arguments)
+        {
+            return Ok(Parser.GraphClassMF(arguments));
+        }
     }
 }
