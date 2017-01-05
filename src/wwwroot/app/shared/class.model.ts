@@ -1,7 +1,7 @@
 import { ClassParams } from './class-params.model';
 
 export enum ClassTypes {
-    triangular = 1,
+    triangular = 0,
     trapezoidal,
     gaussian,
     generalised_bell,
@@ -23,8 +23,8 @@ export class Class {
      * @memberOf Class
      */
     constructor(options: { name?: string, type?: ClassTypes, params?: ClassParams } = {}) {
-        this.name = options.name || '';
-        this.type = options.type || null;
+        this.name = options.name || "";
+        this.type = options.type || 0;
         this.params = options.params || new ClassParams();
     }
 

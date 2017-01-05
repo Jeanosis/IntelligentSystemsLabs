@@ -6,9 +6,9 @@ export class Rule {
         class_name?: string,
         expr?: RuleExpression
     } = {}) {
-        this.var_name = options.var_name || '';
-        this.class_name = options.class_name || '';
-        this.expr = options.expr || null;
+        this.var_name = options.var_name || "";
+        this.class_name = options.class_name || "";
+        this.expr = options.expr || new RuleExpression();
     }
 
     var_name: string;

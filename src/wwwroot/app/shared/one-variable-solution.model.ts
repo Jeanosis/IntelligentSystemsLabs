@@ -8,7 +8,7 @@ export class OneVariableSolution {
         gravity_center?: number
     } = {}) {
         this.name = options.name || "";
-        this.graph = options.graph || null;
+        this.graph = options.graph || new Graph();
         this.gravity_center = options.gravity_center || 0;
     }
 
