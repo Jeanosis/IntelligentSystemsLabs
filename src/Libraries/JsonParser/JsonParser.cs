@@ -7,6 +7,20 @@ namespace Libraries.JsonParser
 {
     public static class Parser
     {
+        public static WebApplication.Models.Graph GraphClassMF(WebApplication.Models.ClassGraphArguments arguments)
+        {
+            var classModel = new WebApplication.Models.Class {
+                name = "",
+                type = arguments.classType,
+                @params = arguments.@params
+            };
+            
+            var clazz = ConvertModelToClass(classModel);
+            var range = new FuzzyLogicInference.Range(arguments.from, arguments.to);
+
+            return BuildGraph(clazz.CalculateMembershipValueFor, range, arguments.step);
+        }
+
         public static FuzzyLogicInference.Task TaskFromJson(string json)
         {
             var taskModel = JsonConvert.DeserializeObject<WebApplication.Models.Task>(json);
@@ -87,16 +101,17 @@ namespace Libraries.JsonParser
             };
         }
 
-        private static WebApplication.Models.OutputParameterSolution.Graph BuildGraph(
+        private static WebApplication.Models.Graph BuildGraph(
             FuzzyLogicInference.Task.OutputParameterSolution oneVariableSolution,
             double graphingStep)
         {
-            var graphValues = oneVariableSolution.Parameter.Range
-                .EnumerateWithStep(graphingStep)
-                .Select(oneVariableSolution.ParameterDistribution)
-                .ToList();
-            
-            return new WebApplication.Models.OutputParameterSolution.Graph { values = graphValues, step = graphingStep };
+            return BuildGraph(oneVariableSolution.ParameterDistribution, oneVariableSolution.Parameter.Range, graphingStep);
+        }
+
+        private static WebApplication.Models.Graph BuildGraph(Func<double, double> function, FuzzyLogicInference.Range range, double graphingStep)
+        {
+            var graphValues = range.EnumerateWithStep(graphingStep).Select(function).ToList();
+            return new WebApplication.Models.Graph { values = graphValues, step = graphingStep };
         }
 
         public static string SolutionToJson(IEnumerable<FuzzyLogicInference.Task.OutputParameterSolution> results, double graphingStep) =>
