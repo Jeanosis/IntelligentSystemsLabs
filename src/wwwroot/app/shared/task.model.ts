@@ -8,7 +8,7 @@ export class Task {
         out_vars?: Param[],
         rules?: Rule[]
     } = {}) {
-        this.name = options.name || '';
+        this.name = options.name || "";
         this.in_vars = options.in_vars || [];
         this.out_vars = options.out_vars || [];
         this.rules = options.rules || [];

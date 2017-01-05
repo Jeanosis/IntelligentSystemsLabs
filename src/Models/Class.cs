@@ -10,7 +10,7 @@ namespace WebApplication.Models
     {
         public enum Type
         {
-            Triangular = 1,
+            Triangular = 0,
             Trapezoidal,
             Gaussian,
             GeneralisedBell,

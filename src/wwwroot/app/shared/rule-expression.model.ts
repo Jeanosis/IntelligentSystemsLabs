@@ -1,5 +1,5 @@
 export enum ExpressionTypes {
-    neg = 1,
+    neg = 0,
     state,
     and,
     or
@@ -14,12 +14,15 @@ export class RuleExpression {
         left?: RuleExpression,
         right?: RuleExpression        
     } = {}) {
-        this.type = options.type || null;
-        this.var_name = options.var_name || '';
-        this.class_name = options.class_name || '';
-        this.arg = options.arg || null;
-        this.left = options.left || null;
-        this.right = options.right || null;
+        this.type = options.type || 0;
+        this.var_name = options.var_name || "";
+        this.class_name = options.class_name || "";
+        
+        // Adding || new RuleExpression() to the assignments below
+        // would lead to infinite recursion.
+        this.arg = options.arg;
+        this.left = options.left;
+        this.right = options.right;
     }
 
     type: ExpressionTypes;

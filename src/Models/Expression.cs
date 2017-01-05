@@ -10,7 +10,7 @@ namespace WebApplication.Models
     {
         public enum Type
         {
-            Neg = 1,
+            Neg = 0,
             State,
             And,
             Or
