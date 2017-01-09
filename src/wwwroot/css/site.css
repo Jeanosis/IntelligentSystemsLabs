@@ -1,3 +1,14 @@
+.load-icon {
+    position: absolute;
+    width: 100px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    fill: #F5F5F5;
+}
+
 /*task tabs*/
 .task-bar md-tab-header {
     background-color: #3F51B5;
@@ -155,6 +166,7 @@
 
 body {
     padding: 0;
+    background-color: #3F51B5;
 }
 
 /* Wrapping element */
