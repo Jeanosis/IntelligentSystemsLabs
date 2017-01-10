@@ -4,11 +4,14 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { InputParamService } from '../../shared/input-param.service';
 
 import { Task } from '../../shared/task.model';
+import { Param } from '../../shared/param.model';
 
 @Component({
     moduleId: module.id,
     selector: 'task-panel',
+/*host: { class: 'layer-shadow-3' },*/
     templateUrl: './task.component.html',
+    styleUrls: ['./task.component.css'],
     providers: [InputParamService]
 })
 export class TaskComponent extends OnInit {
@@ -19,12 +22,19 @@ export class TaskComponent extends OnInit {
 
     ngOnInit(): void {
         var task = Cookie.get('task');
-        console.log('Task', task);
         this.task = task == null ? this.task : JSON.parse(task);
+
+        this.taskJson = JSON.stringify(this.task, null, 15);
+        this.taskJson = this.taskJson.replace(/[\r\n]/g, '<br/>');
+        this.taskJson = this.taskJson.replace(/[ ]/g, '&nbsp');
     }
 
     goToSolution(): void {
         this.router.navigate(['../solution'], { relativeTo: this.r });
+    }
+
+    addInputParam(): void {
+        this.task.in_vars.push(new Param());
     }
 
     saveToCookies() {
@@ -35,6 +45,10 @@ export class TaskComponent extends OnInit {
         Cookie.set('task', JSON.stringify(this.task));
         setTimeout(() => {
             this.changeAnimationState();
+            
+            this.taskJson = JSON.stringify(this.task, null, 15);
+            this.taskJson = this.taskJson.replace(/[\r\n]/g, '<br/>');
+            this.taskJson = this.taskJson.replace(/[ ]/g, '&nbsp');
         }, 2000);
     }
 
@@ -42,6 +56,7 @@ export class TaskComponent extends OnInit {
         this.buttonState = !this.buttonState;
     }
 
+    taskJson: string = '';
     buttonState: boolean = false;
     task: Task = new Task();
 }

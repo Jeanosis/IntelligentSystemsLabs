@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FirstLabComponent } from './first-lab.component';
 //import { TaskComponent } from './task/task.component';
-import { SolutionPanelComponent } from './solution-panel/solution-panel.component';
+import { SolutionComponent } from './solution/solution.component';
 
 const routes: Routes = [
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'solution',
-        component: SolutionPanelComponent
+        component: SolutionComponent
       }
     ]
   }

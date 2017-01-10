@@ -1,3 +1,130 @@
+.load-icon {
+    position: absolute;
+    width: 100px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    fill: #F5F5F5;
+}
+
+/*task tabs*/
+.task-bar md-tab-header {
+    background-color: #3F51B5;
+    color: white;
+    box-shadow: 0 2px 3px 0.5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 3px 0.5px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 2px 3px 0.5px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    border: none;
+}
+
+.task-bar md-ink-bar {
+    background-color: white;
+}
+
+/*task header input*/
+.md-input-underline,
+.task-bar-input .md-input-ripple {
+    background-color: white;
+}
+
+.task-bar-input,
+.task-bar-input .md-focused,
+.task-bar-input .md-input-placeholder {
+    color: white;
+}
+
+/*general*/
+/*.row {
+  display: flex;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+}
+
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}*/
+.panel {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 16px;
+    background-color: white;
+    /*border: 1px solid green;*/
+    border-bottom: 1px solid #FAFAFA;
+}
+
+.panel-container {
+    border-radius: 2px;
+}
+
+.panel-container-top {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.panel-container-bottom {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.panel-text {
+    line-height: 50px;
+}
+
+.tab-margin {
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+}
+/*delete?*/
+.expandable {
+    transition: margin 1s ease-out;
+    -o-transition: margin 1s ease-out;
+    -moz-transition: margin 1s ease-out;
+    -webkit-transition: margin 1s ease-out;
+}
+
+.expanded {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+/*Layers shadows*/
+.layer-shadow-1 {
+    box-shadow: 0 2px 3px 0.5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 3px 0.5px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 2px 3px 0.5px rgba(0, 0, 0, 0.3);
+}
+
+.layer-shadow-2 {
+    box-shadow: 0 2.5px 3.2px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2.5px 3.2px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 2.5px 3.2px 1px rgba(0, 0, 0, 0.3);
+}
+
+.layer-shadow-3 {
+    box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.3);
+}
+/*Buttons-----------------------------*/
+/*icon_button btn-expand > md-icon expand-icon*/
+.btn-icon {
+    padding: 0;
+    background-color: transparent;
+    transition: transform 0.5s ease-out;
+    -o-transition: transform 0.5s ease-out;
+    -moz-transition: transform 0.5s ease-out;
+    -webkit-transition: transform 0.5s ease-out;
+}
+/*FAB*/
 .fab {
     width: 56px;
     height: 56px;
@@ -7,10 +134,11 @@
     color: white;
     text-align: center;
     padding: 0;
-    /*animation-duration: 3s;
-  animation-name: slidein;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;*/
+}
+
+.fab:focus {
+    outline: none !important;
+    outline-style: none !important;
 }
 
 .sync-progress {
@@ -38,6 +166,7 @@
 
 body {
     padding: 0;
+    background-color: #3F51B5;
 }
 
 /* Wrapping element */

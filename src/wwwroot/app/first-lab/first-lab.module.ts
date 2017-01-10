@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FirstLabRoutingModule } from './first-lab-routing.module';
 import { TaskModule } from './task/task.module';
-import { SolutionPanelModule } from './solution-panel/solution-panel.module';
+import { SolutionModule } from './solution/solution.module';
 
 import { FirstLabComponent } from './first-lab.component';
 /*import { PersonService } from './person.service';*/
@@ -12,7 +12,7 @@ import { FirstLabComponent } from './first-lab.component';
         CommonModule,
         FirstLabRoutingModule,
         TaskModule,
-        SolutionPanelModule
+        SolutionModule
     ],
     exports: [FirstLabComponent],
     declarations: [FirstLabComponent]/*,

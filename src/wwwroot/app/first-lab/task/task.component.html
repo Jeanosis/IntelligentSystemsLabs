@@ -1,21 +1,40 @@
-<md-input placeholder="Task Name" [(ngModel)]="task.name" style="width: 100%"></md-input>
-<button class="btn fab" (click)="saveToCookies()">
+<md-input class="task-bar-input" placeholder="Task Name" [(ngModel)]="task.name" style="margin-left: 5px"></md-input>
+<button class="btn fab layer-shadow-1" (click)="saveToCookies()" style="position: fixed; bottom: 20px; right: 20px;">
     <md-icon [ngClass]="{'sync-progress': buttonState}">sync</md-icon>
 </button>
-<md-tab-group>
+<div style="overflow: hidden">
+<md-tab-group class="task-bar">
     <md-tab label="Input params">
-        <task-input>Loading...</task-input>
+        <div class="tab-margin">
+            <task-input *ngFor="let item of task.in_vars; let i = index" [index]="i" [param]="item"></task-input>
+            <div class="panel layer-shadow-1">
+                <button class="btn btn-primary" (click)="addInputParam()"><md-icon>add</md-icon> Add param</button>
+            </div>
+        </div>
     </md-tab>
     <md-tab label="Output params">
-        <md-icon>home</md-icon>Content 2
+        <div class="tab-margin">
+            <task-input *ngFor="let item of task.in_vars; let i = index" [index]="i" [param]="item"></task-input>
+            <div class="panel layer-shadow-1">
+                <button class="btn btn-primary" (click)="addInputParam()"><md-icon>add</md-icon> Add param</button>
+            </div>
+        </div>
     </md-tab>
     <md-tab label="Rules">
-        Rules
+        <div class="tab-margin">
+            <task-input *ngFor="let item of task.in_vars; let i = index" [index]="i" [param]="item"></task-input>
+            <div class="panel layer-shadow-1">
+                <button class="btn btn-primary" (click)="addInputParam()"><md-icon>add</md-icon> Add param</button>
+            </div>
+        </div>
     </md-tab>
-    <md-tab label="Preview">
-        Preview
+    <md-tab label="Json">
+        <div class="tab-margin">
+            <div class="panel layer-shadow-1" [innerHTML]="taskJson"></div>
+        </div>
     </md-tab>
 </md-tab-group>
+</div>
 <!--
 <h4>This is task panel!</h4>
 <form>

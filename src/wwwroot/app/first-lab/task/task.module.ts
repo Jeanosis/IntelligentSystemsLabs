@@ -5,6 +5,7 @@ import { MaterialModule } from '@angular/material';
 import { TaskRoutingModule } from './task-routing.module';
 
 import { TaskInputParamsModule } from './task-input-params/task-input-params.module';
+import { TaskInputParamModule } from './task-input-param/task-input-param.module';
 import { TaskComponent }       from './task.component';
 import { PersonService, Person }    from './person.service';
 
@@ -14,7 +15,8 @@ import { PersonService, Person }    from './person.service';
         FormsModule,
         MaterialModule,
         TaskRoutingModule,
-        TaskInputParamsModule
+        TaskInputParamsModule,
+        TaskInputParamModule
     ],
     exports: [TaskComponent],
     declarations: [TaskComponent],

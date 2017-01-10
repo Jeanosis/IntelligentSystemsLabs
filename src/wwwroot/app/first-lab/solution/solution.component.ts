@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 @Component({
     moduleId: module.id,
     selector: 'souliton-panel',
-    templateUrl: './solution-panel.component.html'
+    templateUrl: './solution.component.html'
 })
-export class SolutionPanelComponent extends OnInit {
+export class SolutionComponent extends OnInit {
     constructor(private router: Router) {
         super();
     }
