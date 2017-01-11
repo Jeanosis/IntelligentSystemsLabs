@@ -7,7 +7,7 @@ import { Rule } from './shared/rule.model';
 import { RuleExpression, ExpressionTypes } from './shared/rule-expression.model';
 import { ClassGraphArguments } from './shared/class-graph-arguments.model';
 
-import { TaskService } from './first-lab/task/task.service';
+import { TaskService } from './task/task.service';
 
 
 @Component({

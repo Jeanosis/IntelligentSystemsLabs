@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
-import { Task } from '../../shared/task.model';
-import { OneVariableSolution } from '../../shared/one-variable-solution.model';
-import { ClassGraphArguments } from '../../shared/class-graph-arguments.model';
-import { Graph } from '../../shared/graph.model';
+import { Task } from '../shared/task.model';
+import { OneVariableSolution } from '../shared/one-variable-solution.model';
+import { ClassGraphArguments } from '../shared/class-graph-arguments.model';
+import { Graph } from '../shared/graph.model';
 
 @Injectable()
 export class TaskService {

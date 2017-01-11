@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
-import { InputParamService } from '../../shared/input-param.service';
+import { InputParamService } from '../shared/input-param.service';
 
-import { Task } from '../../shared/task.model';
-import { Param } from '../../shared/param.model';
+import { Task } from '../shared/task.model';
+import { Param } from '../shared/param.model';
 
 @Component({
     moduleId: module.id,

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { InputParamService } from '../../../shared/input-param.service';
-import { Param } from '../../../shared/param.model';
+import { InputParamService } from '../../shared/input-param.service';
+import { Param } from '../../shared/param.model';
 
 @Component({
     moduleId: module.id,

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Class, ClassTypes } from '../../../../shared/class.model';
+import { Class, ClassTypes } from '../../../shared/class.model';
 
 @Component({
     moduleId: module.id,

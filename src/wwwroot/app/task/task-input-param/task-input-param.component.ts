@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Param } from '../../../shared/param.model';
-import { Class } from '../../../shared/class.model';
+import { Param } from '../../shared/param.model';
+import { Class } from '../../shared/class.model';
 
 @Component({
     moduleId: module.id,

@@ -11,8 +11,8 @@ const routes: Routes = [
         component: GeneralComponent
     },
     {
-        path: 'lab1',
-        loadChildren: 'app/first-lab/first-lab.module#FirstLabModule'
+        path: 'task',
+        loadChildren: 'app/task/task.module#TaskModule'
     },
     {
         path: 'solution',
