@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-//import { AppComponent } from './app.component';
+import { AppComponent } from './app.component';
 import { GeneralComponent } from './general/general.component';
 /*import { TaskPanelComponent } from './task-panel/task-panel.component';*/
 

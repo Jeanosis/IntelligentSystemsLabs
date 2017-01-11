@@ -1,9 +1,12 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule }        from '@angular/common';
+import { CommonModule } from '@angular/common';
 
-import { SyncService }   from './sync.service';
+import { SyncService } from './sync.service';
 
 @NgModule({
+    imports: [CommonModule],
+    declarations: [],
+    exports: [],
     providers: [SyncService]
 })
 export class SyncModule {

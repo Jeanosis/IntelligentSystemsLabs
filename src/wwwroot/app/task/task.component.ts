@@ -1,7 +1,7 @@
-import { Component, OnInit, Renderer } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
-import { InputParamService } from '../shared/input-param.service';
+
 import { SyncService } from '../shared/sync/sync.service';
 import { Task } from '../shared/task.model';
 import { Param } from '../shared/param.model';
@@ -9,21 +9,16 @@ import { Param } from '../shared/param.model';
 @Component({
     moduleId: module.id,
     selector: 'task-panel',
-/*host: { class: 'layer-shadow-3' },*/
     templateUrl: './task.component.html',
-    styleUrls: ['./task.component.css'],
-    providers: [InputParamService]
+    styleUrls: ['./task.component.css']
 })
-export class TaskComponent extends OnInit {
+export class TaskComponent implements OnInit, OnDestroy {
 
     constructor(
-        private inputParamService: InputParamService, 
         private router: Router,
         private r:ActivatedRoute, 
         private syncService: SyncService,
-        private renderer: Renderer) {
-        super();
-    }
+        private renderer: Renderer) { }
 
     ngOnInit(): void {
         var task = Cookie.get('task');
@@ -36,6 +31,10 @@ export class TaskComponent extends OnInit {
         this.syncService.setListener(this.renderer, (event: any) => {
             Cookie.set('task', JSON.stringify(this.task));
         });
+    }
+
+    ngOnDestroy(): void {
+        this.syncService.removeListener();
     }
 
     goToSolution(): void {
@@ -51,7 +50,7 @@ export class TaskComponent extends OnInit {
             return;
 
         this.buttonState = true;
-        //Cookie.set('task', JSON.stringify(this.task));
+        
         setTimeout(() => {
             this.changeAnimationState();
             

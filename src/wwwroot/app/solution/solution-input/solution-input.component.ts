@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Renderer } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Renderer } from '@angular/core';
 
 import { SyncService } from '../../shared/sync/sync.service';
 import { StorageService } from '../../shared/storage.service';
@@ -11,7 +11,7 @@ import { Param } from '../../shared/param.model';
     templateUrl: 'solution-input.component.html',
     styleUrls: ['solution-input.component.css']
 })
-export class SolutionInputComponent implements OnInit {
+export class SolutionInputComponent implements OnInit, OnDestroy {
     constructor(private storageService: StorageService, private syncService: SyncService, private renderer: Renderer) { }
 
     ngOnInit(): void {
@@ -22,6 +22,9 @@ export class SolutionInputComponent implements OnInit {
         });
     }
     
+    ngOnDestroy(): void {
+        this.syncService.removeListener();
+    }
 
     private params: Param[] = [];
 }

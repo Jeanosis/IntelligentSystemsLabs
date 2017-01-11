@@ -8,7 +8,8 @@ import { TaskInputParamsModule } from './task-input-params/task-input-params.mod
 import { TaskInputParamModule } from './task-input-param/task-input-param.module';
 import { TaskComponent }       from './task.component';
 import { PersonService, Person }    from './person.service';
-import { SyncModule }    from '../shared/sync/sync.mudule';
+import { SyncModule }    from '../shared/sync/sync.module';
+import { SyncService }    from '../shared/sync/sync.service';
 
 @NgModule({
     imports: [
@@ -18,7 +19,7 @@ import { SyncModule }    from '../shared/sync/sync.mudule';
         TaskRoutingModule,
         TaskInputParamsModule,
         TaskInputParamModule,
-        SyncModule
+        SyncModule.forRoot()
     ],
     exports: [TaskComponent],
     declarations: [TaskComponent],
