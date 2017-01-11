@@ -1,22 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-//import { SolutionComponent } from './solution.component';
-import { SolutionInputPanelComponent } from './solution-input/solution-input.component';
+import { SolutionComponent } from './solution.component';
+
+import { SolutionInputComponent } from './solution-input/solution-input.component';
+import { SolutionResultsComponent } from './solution-results/solution-results.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'input',
-    pathMatch: 'full',
+    component: SolutionComponent,
     children: [
-        {
-            path: 'input',
-            component: SolutionInputPanelComponent
-        },
-        {
-            path: 'results',
-            loadChildren: 'app/solution/solution-results/solution-results.module#SolutionResultsModule'
-        }
+      {
+        path: '',
+        redirectTo: 'input',
+        pathMatch: 'full'
+      },
+      {
+        path: 'input',
+        component: SolutionInputComponent
+      },
+      {
+        path: 'results',
+        component: SolutionResultsComponent
+      }
     ]
   }
 ];
@@ -25,4 +31,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class FirstLabRoutingModule { }
+export class SolutionRoutingModule { }

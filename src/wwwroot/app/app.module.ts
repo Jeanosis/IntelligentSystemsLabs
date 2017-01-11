@@ -8,6 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { FirstLabModule } from './first-lab/first-lab.module';
 import { AppToolbarModule } from './app-toolbar/app-toolbar.module';
+import { GeneralModule } from './general/general.module';
 
 import { AppComponent } from './app.component';
 /*import { PersonService } from './person.service';*/
@@ -23,7 +24,8 @@ import { TaskService } from './first-lab/task/task.service';
         FormsModule,
         AppRoutingModule,
         FirstLabModule,
-        AppToolbarModule
+        AppToolbarModule,
+        GeneralModule
     ],
     declarations: [AppComponent],
     providers: [

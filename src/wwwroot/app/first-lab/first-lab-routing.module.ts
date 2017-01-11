@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FirstLabComponent } from './first-lab.component';
 //import { TaskComponent } from './task/task.component';
-import { SolutionComponent } from './solution/solution.component';
+//import { SolutionComponent } from './solution/solution.component';
 
 const routes: Routes = [
   {
-    path: 'lab1',
+    path: '',
     component: FirstLabComponent,
     children: [
       /*{
@@ -18,11 +18,11 @@ const routes: Routes = [
         path: 'task',
         //component: TaskComponent
         loadChildren: 'app/first-lab/task/task.module#TaskModule'
-      },
+  }/*,
       {
         path: 'solution',
         component: SolutionComponent
-      }
+      }*/
     ]
   }
 ];
