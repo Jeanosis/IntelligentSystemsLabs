@@ -1,6 +1,7 @@
-<h3>This is solution panel!</h3>
-<div>
-    <a routerLink="./input">Input</a>
-    <a routerLink="./results">Results</a>
+<nav class="task-bar" md-tab-nav-bar>
+    <a md-tab-link (click)="changeRoute()" routerLink="input" [active]="rlaSafe">Input Values</a>
+    <a md-tab-link (click)="changeRoute()" routerLink="results" [active]="!rlaSafe">Results</a>
+</nav>
+<div class="panel main-block panel-container-bottom layer-shadow-1">
+    <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>

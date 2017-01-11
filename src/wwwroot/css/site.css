@@ -1,3 +1,4 @@
+/*Load screen*/
 .load-icon {
     position: absolute;
     width: 100px;
@@ -10,7 +11,8 @@
 }
 
 /*task tabs*/
-.task-bar md-tab-header {
+.task-bar > md-tab-header,
+.task-bar[md-tab-nav-bar] {
     background-color: #3F51B5;
     color: white;
     box-shadow: 0 2px 3px 0.5px rgba(0, 0, 0, 0.3);
@@ -20,13 +22,22 @@
     border: none;
 }
 
-.task-bar md-ink-bar {
+.task-bar [md-tab-link]:visited,
+.task-bar [md-tab-link]:hover {
+    color: white;
+}
+
+.md-input-underline,
+.task-bar-input .md-input-ripple,
+.task-bar md-ink-bar,
+.task-bar [md-tab-link] > md-ripple-background {
     background-color: white;
 }
 
 /*task header input*/
 .md-input-underline,
-.task-bar-input .md-input-ripple {
+.task-bar-input .md-input-ripple,
+ {
     background-color: white;
 }
 
@@ -51,6 +62,9 @@
   align-items: flex-start;
   justify-content: center;
 }*/
+.main-block {
+    min-height: 500px;
+}
 .panel {
     display: block;
     width: 100%;
@@ -130,7 +144,7 @@
     height: 56px;
     border-radius: 50%;
     font-size: 24px;
-    background-color: indigo;
+    background-color: #3F51B5;
     color: white;
     text-align: center;
     padding: 0;

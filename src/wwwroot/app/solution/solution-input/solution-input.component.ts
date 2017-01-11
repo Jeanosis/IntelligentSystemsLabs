@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Renderer } from '@angular/core';
+
+import { SyncService } from '../../shared/sync/sync.service';
+import { StorageService } from '../../shared/storage.service';
+
+import { Param } from '../../shared/param.model';
 
 @Component({
     moduleId: module.id,
@@ -6,12 +11,17 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: 'solution-input.component.html',
     styleUrls: ['solution-input.component.css']
 })
-export class SolutionInputComponent extends OnInit {
-    constructor() {
-        super();
-    }
+export class SolutionInputComponent implements OnInit {
+    constructor(private storageService: StorageService, private syncService: SyncService, private renderer: Renderer) { }
 
-    ngOnInit() {
-        console.log('Solution Input Component initiated!');
+    ngOnInit(): void {
+        this.params = this.storageService.getInputParams();
+
+        this.syncService.setListener(this.renderer, (event: any) => {
+            alert('Solving task!');
+        });
     }
+    
+
+    private params: Param[] = [];
 }

@@ -1,21 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageService } from '../shared/storage.service';
+
+import { Task } from '../shared/task.model';
 
 @Component({
     moduleId: module.id,
     selector: 'souliton-panel',
-    templateUrl: './solution.component.html'
+    templateUrl: 'solution.component.html',
+    styleUrls: ['solution.component.css']
 })
-export class SolutionComponent extends OnInit {
-    constructor(private router: Router) {
-        super();
-    }
+export class SolutionComponent implements OnInit {
+
+    constructor(private storageService: StorageService) { }
 
     ngOnInit(): void {
-        console.log('Solution Component initiated!');
+        this.task = this.storageService.getTask();
     }
 
-    goToLab(): void {
-        this.router.navigate(['../']);
+    changeRoute(): void {
+        this.rlaSafe = !this.rlaSafe;
     }
+
+    private rlaSafe: boolean = true;
+    private task: Task;
 }

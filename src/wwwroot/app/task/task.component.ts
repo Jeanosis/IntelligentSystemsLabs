@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { InputParamService } from '../shared/input-param.service';
-
+import { SyncService } from '../shared/sync/sync.service';
 import { Task } from '../shared/task.model';
 import { Param } from '../shared/param.model';
 
@@ -16,7 +16,12 @@ import { Param } from '../shared/param.model';
 })
 export class TaskComponent extends OnInit {
 
-    constructor(private inputParamService: InputParamService, private router: Router, private r:ActivatedRoute) {
+    constructor(
+        private inputParamService: InputParamService, 
+        private router: Router,
+        private r:ActivatedRoute, 
+        private syncService: SyncService,
+        private renderer: Renderer) {
         super();
     }
 
@@ -27,6 +32,10 @@ export class TaskComponent extends OnInit {
         this.taskJson = JSON.stringify(this.task, null, 15);
         this.taskJson = this.taskJson.replace(/[\r\n]/g, '<br/>');
         this.taskJson = this.taskJson.replace(/[ ]/g, '&nbsp');
+
+        this.syncService.setListener(this.renderer, (event: any) => {
+            Cookie.set('task', JSON.stringify(this.task));
+        });
     }
 
     goToSolution(): void {
@@ -42,7 +51,7 @@ export class TaskComponent extends OnInit {
             return;
 
         this.buttonState = true;
-        Cookie.set('task', JSON.stringify(this.task));
+        //Cookie.set('task', JSON.stringify(this.task));
         setTimeout(() => {
             this.changeAnimationState();
             

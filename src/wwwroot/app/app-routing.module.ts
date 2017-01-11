@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { GeneralComponent } from './general/general.component';
 /*import { TaskPanelComponent } from './task-panel/task-panel.component';*/
 
-const routes: Routes = [
+export const routes: Routes = [
     {
         path: '',
         component: GeneralComponent

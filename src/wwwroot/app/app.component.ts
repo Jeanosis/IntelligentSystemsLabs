@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { Task } from './shared/task.model';
 import { Param } from './shared/param.model';
 import { Class, ClassTypes } from './shared/class.model';
@@ -8,22 +8,17 @@ import { RuleExpression, ExpressionTypes } from './shared/rule-expression.model'
 import { ClassGraphArguments } from './shared/class-graph-arguments.model';
 
 import { TaskService } from './task/task.service';
-
+import { SyncService } from './shared/sync/sync.service';
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/app.component.html',
-    styleUrls: ['./app/app.component.css'],
-    providers: [
-        TaskService
-    ]
+    styleUrls: ['./app/app.component.css']
 })
+export class AppComponent implements OnInit {
+    @ViewChild('syncButton') syncButton: ElementRef;
 
-export class AppComponent extends OnInit {
-
-    constructor(private service: TaskService) {
-        super();
-    }
+    constructor(private service: TaskService, private syncService: SyncService, private renderer: Renderer) { }
 
     ngOnInit() {
         let task: Task = this.createTestTask();
@@ -48,6 +43,8 @@ export class AppComponent extends OnInit {
             .buildClassGraph(graphArguments)
             .then(console.log)
             .catch(error => console.log(`Server error: ${error}`));;
+
+        this.syncService.setElement(this.syncButton);
     }
 
     private createTestTask(): Task {
@@ -211,4 +208,17 @@ export class AppComponent extends OnInit {
             ]
         });
     }
+
+    enableSync(): void {
+        this.buttonState = true;
+        setTimeout(() => {
+            this.changeAnimationState();
+        }, 2000);
+    }
+
+    changeAnimationState(): void {
+        this.buttonState = !this.buttonState;
+    }
+
+    buttonState: boolean = false;
 }
