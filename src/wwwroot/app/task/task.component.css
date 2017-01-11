@@ -2,5 +2,11 @@
     display: block;
     width: 100%;
     height: auto;
-    margin-top: -99px;
+    margin-top: -48px;
+}
+
+@media screen and (max-width: 699px) {
+    :host {
+        margin-top: -20px;
+    }
 }

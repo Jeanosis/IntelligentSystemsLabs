@@ -1,34 +1,33 @@
-<md-input class="task-bar-input" placeholder="Task Name" [(ngModel)]="task.name" style="margin-left: 5px"></md-input>
 <div style="overflow: hidden">
-<md-tab-group class="task-bar">
-    <md-tab label="Input params">
-        <div class="tab-margin">
-            <task-input *ngFor="let item of task.in_vars; let i = index" [index]="i" [param]="item"></task-input>
-            <div class="panel layer-shadow-1">
-                <button class="btn btn-primary" (click)="addInputParam()"><md-icon>add</md-icon> Add param</button>
+    <md-tab-group class="task-bar">
+        <md-tab label="Input params">
+            <div class="tab-margin">
+                <task-input *ngFor="let item of task.in_vars; let i = index" [index]="i" [param]="item"></task-input>
+                <div class="panel layer-shadow-1">
+                    <button class="btn btn-primary" (click)="addInputParam()"><md-icon>add</md-icon> Add param</button>
+                </div>
             </div>
-        </div>
-    </md-tab>
-    <md-tab label="Output params">
-        <div class="tab-margin">
-            <task-input *ngFor="let item of task.in_vars; let i = index" [index]="i" [param]="item"></task-input>
-            <div class="panel layer-shadow-1">
-                <button class="btn btn-primary" (click)="addInputParam()"><md-icon>add</md-icon> Add param</button>
+        </md-tab>
+        <md-tab label="Output params">
+            <div class="tab-margin">
+                <task-input *ngFor="let item of task.in_vars; let i = index" [index]="i" [param]="item"></task-input>
+                <div class="panel layer-shadow-1">
+                    <button class="btn btn-primary" (click)="addInputParam()"><md-icon>add</md-icon> Add param</button>
+                </div>
             </div>
-        </div>
-    </md-tab>
-    <md-tab label="Rules">
-        <div class="tab-margin">
-            <task-input *ngFor="let item of task.in_vars; let i = index" [index]="i" [param]="item"></task-input>
-            <div class="panel layer-shadow-1">
-                <button class="btn btn-primary" (click)="addInputParam()"><md-icon>add</md-icon> Add param</button>
+        </md-tab>
+        <md-tab label="Rules">
+            <div class="tab-margin">
+                <task-input *ngFor="let item of task.in_vars; let i = index" [index]="i" [param]="item"></task-input>
+                <div class="panel layer-shadow-1">
+                    <button class="btn btn-primary" (click)="addInputParam()"><md-icon>add</md-icon> Add param</button>
+                </div>
             </div>
-        </div>
-    </md-tab>
-    <md-tab label="Json">
-        <div class="tab-margin">
-            <div class="panel layer-shadow-1" [innerHTML]="taskJson"></div>
-        </div>
-    </md-tab>
-</md-tab-group>
-</div>
+        </md-tab>
+        <md-tab label="Json">
+            <div class="tab-margin">
+                <div class="panel layer-shadow-1" [innerHTML]="taskJson"></div>
+            </div>
+        </md-tab>
+    </md-tab-group>
+    </div>
