@@ -1,4 +1,6 @@
-Input Params is here.
-<div *ngFor="let item of params">
-    {{item.name}}
+<div *ngFor="let item of params; let i = index" class="col col-md-6 col-xs-12 in-param">
+    <div>#{{i+1}}</div>
+    <md-input placeholder="{{item.name}}" [(ngModel)]="item.value"></md-input>
+    <div>From: {{item.from}}</div>
+    <div>To: {{item.to}}</div>
 </div>

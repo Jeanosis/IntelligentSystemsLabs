@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { GeneralComponent } from './general/general.component';
-/*import { TaskPanelComponent } from './task-panel/task-panel.component';*/
 
 export const routes: Routes = [
     {
@@ -25,5 +24,3 @@ export const routes: Routes = [
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-/*export const routedComponents = [FirstLabComponent];*/

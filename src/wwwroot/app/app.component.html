@@ -2,10 +2,8 @@
     <app-toolbar></app-toolbar>
 </header>
 <main>
-    <div class="container">
-        <div>
-            <router-outlet></router-outlet>
-        </div>
+    <div class="container" style="padding: 0">
+        <router-outlet></router-outlet>
     </div>
     <button id="sync" #syncButton class="btn fab layer-shadow-2" (click)="enableSync()" style="position: fixed; bottom: 20px; right: 20px; z-index: 10100;">
         <md-icon [ngClass]="{'sync-progress': buttonState}">sync</md-icon>

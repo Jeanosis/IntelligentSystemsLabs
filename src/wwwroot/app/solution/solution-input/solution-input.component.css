@@ -1,3 +1,26 @@
 :host {
     display: block;
 }
+
+:host .in-param {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+}
+
+:host .in-param > * {
+    height: auto;
+}
+
+:host .in-param > div {
+    display: inline-block;
+    margin-top: -1px;
+    margin-right: 10px;
+}
+
+:host .in-param > md-input {
+    width: 60%;
+    margin-right: 10px;
+}

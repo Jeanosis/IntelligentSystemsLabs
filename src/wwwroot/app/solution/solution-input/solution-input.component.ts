@@ -18,7 +18,7 @@ export class SolutionInputComponent implements OnInit, OnDestroy {
         this.params = this.storageService.getInputParams();
 
         this.syncService.setListener(this.renderer, (event: any) => {
-            alert('Solving task!');
+            this.storageService.setInputParams(this.params);
         });
     }
     
