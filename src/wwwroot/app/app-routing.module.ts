@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { AppComponent } from './app.component';
 import { GeneralComponent } from './general/general.component';
 
 export const routes: Routes = [
@@ -16,6 +14,10 @@ export const routes: Routes = [
     {
         path: 'solution',
         loadChildren: 'app/solution/solution.module#SolutionModule'
+    },
+    {
+        path: 'help',
+        loadChildren: 'app/help/help.module#HelpModule'
     }
 ];
 

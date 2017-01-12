@@ -12,6 +12,8 @@ import { GeneralModule } from './general/general.module';
 import { SyncModule } from './shared/sync/sync.module';
 import { SyncService } from './shared/sync/sync.service';
 
+import { HelpModule } from './help/help.module';
+
 import { AppComponent } from './app.component';
 /*import { PersonService } from './person.service';*/
 
