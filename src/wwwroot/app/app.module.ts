@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { FirstLabModule } from './first-lab/first-lab.module';
 import { AppToolbarModule } from './app-toolbar/app-toolbar.module';
 
+import { HelpModule } from './help/help.module';
+
 import { AppComponent } from './app.component';
 /*import { PersonService } from './person.service';*/
 
@@ -23,7 +25,8 @@ import { TaskService } from './first-lab/task/task.service';
         FormsModule,
         AppRoutingModule,
         FirstLabModule,
-        AppToolbarModule
+        AppToolbarModule,
+        HelpModule
     ],
     declarations: [AppComponent],
     providers: [

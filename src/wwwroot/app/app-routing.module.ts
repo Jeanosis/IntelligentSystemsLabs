@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HelpComponent } from './help/help.component';
 
 /*import { TaskPanelComponent } from './task-panel/task-panel.component';*/
 
@@ -13,6 +14,10 @@ const routes: Routes = [
         path: '/lab1',
         component: FirstLabComponent
     }*/
+    {
+        path: 'help',
+        component: HelpComponent
+    }
 ];
 
 @NgModule({
