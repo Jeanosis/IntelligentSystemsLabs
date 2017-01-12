@@ -15,7 +15,7 @@ import { SyncService } from './shared/sync/sync.service';
 import { AppComponent } from './app.component';
 /*import { PersonService } from './person.service';*/
 
-import { TaskService } from './task/task.service';
+import { TaskService } from './shared/task.service';
 import { StorageService } from './shared/storage.service';
 
 @NgModule({

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 import { SyncService } from '../shared/sync/sync.service';
+import { StorageService } from '../shared/storage.service';
 import { Task } from '../shared/task.model';
 import { Param } from '../shared/param.model';
 
@@ -18,18 +19,22 @@ export class TaskComponent implements OnInit, OnDestroy {
         private router: Router,
         private r:ActivatedRoute, 
         private syncService: SyncService,
+        private storageService: StorageService,
         private renderer: Renderer) { }
 
     ngOnInit(): void {
-        var task = Cookie.get('task');
-        this.task = task == null ? this.task : JSON.parse(task);
+        this.task = this.storageService.getTask();
 
         this.taskJson = JSON.stringify(this.task, null, 15);
         this.taskJson = this.taskJson.replace(/[\r\n]/g, '<br/>');
         this.taskJson = this.taskJson.replace(/[ ]/g, '&nbsp');
 
         this.syncService.setListener(this.renderer, (event: any) => {
-            Cookie.set('task', JSON.stringify(this.task));
+            this.storageService.saveTask(this.task);
+            
+            this.taskJson = JSON.stringify(this.task, null, 15);
+            this.taskJson = this.taskJson.replace(/[\r\n]/g, '<br/>');
+            this.taskJson = this.taskJson.replace(/[ ]/g, '&nbsp');
         });
     }
 

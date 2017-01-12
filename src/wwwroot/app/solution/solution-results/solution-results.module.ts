@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 
+import { StorageService } from '../../shared/storage.service';
 import { SolutionResultsComponent }   from './solution-results.component';
 
 @NgModule({
@@ -10,6 +11,7 @@ import { SolutionResultsComponent }   from './solution-results.component';
         MaterialModule
     ],
     exports: [SolutionResultsComponent],
-    declarations: [SolutionResultsComponent]
+    declarations: [SolutionResultsComponent],
+    providers:[StorageService]
 })
 export class SolutionResultsModule { }

@@ -22,13 +22,23 @@ export class StorageService {
     }
 
     getTask(): Task {
-        var task = JSON.parse(Cookie.get(this.taskName));
-        return task === null ? new Task() : task;
+        var task = Cookie.get(this.taskName);
+        return task === null ? new Task() : JSON.parse(task);
     }
 
     saveTask(task: Task): void {
         Cookie.set(this.taskName, JSON.stringify(task));
     }
 
+    saveResults(results: Object[]): void {
+        Cookie.set(this.resultName, JSON.stringify(results));
+    }
+
+    getResults(): Object[] {
+        var results = Cookie.get(this.resultName);
+        return results === null ? [] : JSON.parse(results);
+    }
+
     private taskName: string = 'task';
+    private resultName: string = 'results';
 }

@@ -62,9 +62,20 @@
   align-items: flex-start;
   justify-content: center;
 }*/
+.main-container {
+    margin-top: -48px;
+}
+
+@media screen and (max-width: 699px) {
+    .main-container {
+        margin-top: -20px;
+    }
+}
+
 .main-block {
     min-height: 500px;
 }
+
 .panel {
     display: block;
     width: 100%;

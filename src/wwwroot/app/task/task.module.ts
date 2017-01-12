@@ -9,7 +9,7 @@ import { TaskInputParamModule } from './task-input-param/task-input-param.module
 import { TaskComponent }       from './task.component';
 import { PersonService, Person }    from './person.service';
 import { SyncModule }    from '../shared/sync/sync.module';
-import { SyncService }    from '../shared/sync/sync.service';
+import { StorageService } from '../shared/storage.service';
 
 @NgModule({
     imports: [
@@ -23,6 +23,6 @@ import { SyncService }    from '../shared/sync/sync.service';
     ],
     exports: [TaskComponent],
     declarations: [TaskComponent],
-    providers: [PersonService]
+    providers: [PersonService, StorageService]
 })
 export class TaskModule { }

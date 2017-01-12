@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from '../../shared/storage.service';
 
 @Component({
     moduleId: module.id,
@@ -7,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['solution-results.component.css']
 })
 export class SolutionResultsComponent implements OnInit {
-    constructor() {
-
-    }
+    constructor(private storageService: StorageService) { }
 
     ngOnInit() {
-        console.log('Solution Results Component initiated!');
+        this.results = this.storageService.getResults();
     }
+
+    getValues(result: any): string {
+        return JSON.stringify(result.graph.values);
+    }
+
+    private results: Object[] = [];
 }
