@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { Task } from './shared/task.model';
 import { Param } from './shared/param.model';
 import { Class, ClassTypes } from './shared/class.model';
@@ -7,47 +7,56 @@ import { Rule } from './shared/rule.model';
 import { RuleExpression, ExpressionTypes } from './shared/rule-expression.model';
 import { ClassGraphArguments } from './shared/class-graph-arguments.model';
 
-import { TaskService } from './first-lab/task/task.service';
-
+import { TaskService } from './shared/task.service';
+import { SyncService } from './shared/sync/sync.service';
+import { StorageService } from './shared/storage.service';
 
 @Component({
     selector: 'my-app',
     templateUrl: './app/app.component.html',
-    styleUrls: ['./app/app.component.css'],
-    providers: [
-        TaskService
-    ]
+    styleUrls: ['./app/app.component.css']
 })
+export class AppComponent implements OnInit {
+    @ViewChild('syncButton') syncButton: ElementRef;
 
-export class AppComponent extends OnInit {
-
-    constructor(private service: TaskService) {
-        super();
-    }
+    constructor(
+        private service: TaskService,
+        private syncService: SyncService,
+        private storageService: StorageService,
+        private renderer: Renderer) { }
 
     ngOnInit() {
-        let task: Task = this.createTestTask();
-        console.log(task);
+        // let task: Task = this.createTestTask();
+        // console.log(task);
 
-        this.service
-            .solveTask(task)
-            .then(console.log)
-            .catch(error =>
-                console.log(`Server error: ${error}`));
+        // this.service
+        //     .solveTask(task)
+        //     .then(console.log)
+        //     .catch(error =>
+        //         console.log(`Server error: ${error}`));
 
-        let graphArguments: ClassGraphArguments = new ClassGraphArguments({
-            classType: task.in_vars[0].classes[0].type,
-            params: task.in_vars[0].classes[0].params,
-            from: task.in_vars[0].from,
-            to: task.in_vars[0].to,
-            step: 0.5,
-        });
-        console.log(graphArguments);
+        // let graphArguments: ClassGraphArguments = new ClassGraphArguments({
+        //     classType: task.in_vars[0].classes[0].type,
+        //     params: task.in_vars[0].classes[0].params,
+        //     from: task.in_vars[0].from,
+        //     to: task.in_vars[0].to,
+        //     step: 0.5,
+        // });
+        // console.log(graphArguments);
 
-        this.service
-            .buildClassGraph(graphArguments)
-            .then(console.log)
-            .catch(error => console.log(`Server error: ${error}`));;
+        // this.service
+        //     .buildClassGraph(graphArguments)
+        //     .then(console.log)
+        //     .catch(error => console.log(`Server error: ${error}`));;
+        this.storageService.saveTask(this.createTestTask());
+        this.syncService.setElement(this.syncButton);
+    }
+
+    enableSync(): void {
+        this.buttonState = true;
+        setTimeout(() => {
+            this.changeAnimationState();
+        }, 2000);
     }
 
     private createTestTask(): Task {
@@ -211,4 +220,10 @@ export class AppComponent extends OnInit {
             ]
         });
     }
+
+    changeAnimationState(): void {
+        this.buttonState = !this.buttonState;
+    }
+
+    buttonState: boolean = false;
 }

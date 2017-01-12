@@ -12,7 +12,6 @@ import { Router, NavigationStart, Event as NavigationEvent } from '@angular/rout
 export class AppToolbarComponent extends OnInit {
     constructor(private location: Location, private router: Router) {
         super();
-        console.log('lel');
         router.events
             .filter(event => event instanceof NavigationStart)
             .subscribe((event: NavigationEvent) => {

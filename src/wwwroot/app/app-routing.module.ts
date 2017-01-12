@@ -1,22 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HelpComponent } from './help/help.component';
+import { GeneralComponent } from './general/general.component';
 
-/*import { TaskPanelComponent } from './task-panel/task-panel.component';*/
-
-const routes: Routes = [
-    /*{
-        path: '',
-        redirectTo: '/lab1',
-        pathMatch: 'full'
-    }/*,
+export const routes: Routes = [
     {
-        path: '/lab1',
-        component: FirstLabComponent
-    }*/
+        path: '',
+        component: GeneralComponent
+    },
+    {
+        path: 'task',
+        loadChildren: 'app/task/task.module#TaskModule'
+    },
+    {
+        path: 'solution',
+        loadChildren: 'app/solution/solution.module#SolutionModule'
+    },
     {
         path: 'help',
-        component: HelpComponent
+        loadChildren: 'app/help/help.module#HelpModule'
     }
 ];
 
@@ -25,5 +26,3 @@ const routes: Routes = [
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-/*export const routedComponents = [FirstLabComponent];*/

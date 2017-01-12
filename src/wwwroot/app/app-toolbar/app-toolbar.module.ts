@@ -7,10 +7,9 @@ import { AppToolbarComponent }   from './app-toolbar.component';
 @NgModule({
     imports: [
         CommonModule,
-        MaterialModule.forRoot()
+        MaterialModule
     ],
     exports: [AppToolbarComponent],
-    declarations: [AppToolbarComponent]/*,
-    providers: [],*/
+    declarations: [AppToolbarComponent]
 })
 export class AppToolbarModule { }

@@ -1,0 +1,13 @@
+:host {
+    display: block;
+}
+
+@media screen and (max-width: 699px) {
+    :host {
+        margin-top: 20px;
+    }
+
+    :host > div {
+        border-radius: 0;
+    }
+}

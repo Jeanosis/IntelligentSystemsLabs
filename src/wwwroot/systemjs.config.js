@@ -1,4 +1,61 @@
 (function (global) {
+    // /***********************************************************************************************
+    // * User Configuration.
+    // **********************************************************************************************/
+    // /** Map relative paths to URLs. */
+    // const map: any = {
+    // };
+
+    // /** User packages configuration. */
+    // const packages: any = {
+    // };
+
+    // ////////////////////////////////////////////////////////////////////////////////////////////////
+    // /***********************************************************************************************
+    //  * Everything underneath this line is managed by the CLI.
+    //  **********************************************************************************************/
+    // const barrels: string[] = [
+    // // Angular specific barrels.
+    // '@angular/core',
+    // '@angular/common',
+    // '@angular/compiler',
+    // '@angular/http',
+    // '@angular/router',
+    // '@angular/platform-browser',
+    // '@angular/platform-browser-dynamic',
+    // '@angular/forms',
+    // '@angular/material',
+    // // Thirdparty barrels.
+    // 'rxjs',
+    // 'ng2-cookies',
+    // // App specific barrels.
+    // 'app',
+    // 'app/shared',
+    // /** @cli-barrel */
+    // ];
+
+    // const cliSystemConfigPackages: any = {};
+    // barrels.forEach((barrelName: string) => {
+    //     cliSystemConfigPackages[barrelName] = { main: 'index' };
+    // });
+
+    // /** Type declaration for ambient System. */
+    // declare var System: any;
+
+    // // Apply the CLI SystemJS configuration.
+    // System.config({
+    // map: {
+    //     '@angular/material': 'lib/@angular/material',
+    //     '@angular': 'lib/@angular',
+    //     'rxjs': 'lib/rxjs',
+    //     'ng2-cookies': 'lib/@angular/cookies'
+    //     'main': '../main.js'
+    // },
+    // packages: cliSystemConfigPackages
+    // });
+
+    // // Apply the user's configuration.
+    // System.config({ map, packages });
     System.config({
         paths: {
             // paths serve as alias
@@ -9,6 +66,7 @@
         map: {
             // our app is within the app folder
             app: 'app',
+            'app/shared': 'app/shared',
             // angular bundles
             '@angular/core': 'lib:@angular/core.umd.js',
             '@angular/common': 'lib:@angular/common.umd.js',
@@ -34,6 +92,9 @@
                 defaultExtension: 'js'
             },
             rxjs: {
+                defaultExtension: 'js'
+            },
+            'app/shared': {
                 defaultExtension: 'js'
             }
         }

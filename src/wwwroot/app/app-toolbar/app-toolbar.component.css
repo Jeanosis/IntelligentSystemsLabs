@@ -15,3 +15,14 @@
     width: 100%;
     height: auto;
 }
+
+@media screen and (max-width: 699px) {
+    :host {
+        height: 100px;
+        z-index: 10110;
+    }
+
+    :host h1 {
+        font-size: 20px;
+    }
+}

@@ -1,0 +1,9 @@
+<div style="overflow: hidden; width: 100%">
+    <nav class="task-bar" md-tab-nav-bar>
+        <a md-tab-link (click)="changeRoute()" routerLink="input" [active]="rlaSafe">Input Values</a>
+        <a md-tab-link (click)="changeRoute()" routerLink="results" [active]="!rlaSafe">Results</a>
+    </nav>
+</div>
+<div class="panel main-block panel-container-bottom layer-shadow-1">
+    <router-outlet></router-outlet>
+</div>

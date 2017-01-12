@@ -3,21 +3,19 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
     moduleId: module.id,
     selector: 'help',
-    templateUrl: './help.component.html',
-    styleUrls: ['./help.component.css']
+    templateUrl: 'help.component.html',
+    styleUrls: ['help.component.css']
 })
-export class HelpComponent extends OnInit {
+export class HelpComponent implements OnInit {
 
-    constructor() {
-        super();
-    }
+    constructor() { }
 
     ngOnInit(): void {
         
     }
 
 
-    @Input() articleText: string = `
+    articleText: string = `
         <h2>Fuzzy-logic inference theory</h2>
 
         <p>The current document is intended to describe the theoretical basis behind CoreLogic library.</p>

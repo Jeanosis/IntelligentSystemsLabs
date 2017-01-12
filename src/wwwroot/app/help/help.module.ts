@@ -6,6 +6,7 @@ import { HelpRoutingModule } from './help-routing.module';
 @NgModule({
     imports: [
         CommonModule,
+        HelpRoutingModule
     ],
     exports: [HelpComponent],
     declarations: [HelpComponent]
