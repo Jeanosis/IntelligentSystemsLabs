@@ -1,6 +1,0 @@
-<div *ngFor="let item of results; let i = index" style="border-bottom: 1px solid gray">
-    <h4><strong>Param #{{i}}:</strong> {{item.name}}</h4>
-    <div><strong>Gravity center:</strong> {{item.gravity_center}}</div>
-    <div style="border-bottom: 1px solid gray"><strong>Values(Step - {{item.graph.step}}):</strong></div>
-    <div style="word-wrap: break-word">{{getValues(item)}} </div>
-</div>
