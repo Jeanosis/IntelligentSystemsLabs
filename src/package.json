@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "concurrently \"npm run tsc:w\" \"npm run dotnet:w\" ",
-    "postinstall": "typings install & bower install",
+    "postinstall": "bower install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings",
@@ -17,23 +17,20 @@
     "@angular/core": "^2.3.0",
     "@angular/forms": "^2.3.0",
     "@angular/http": "^2.3.0",
-    "@angular/material": "^2.0.0-beta.1",
     "@angular/platform-browser": "^2.3.0",
     "@angular/platform-browser-dynamic": "^2.3.0",
     "@angular/router": "^3.3.0",
-    "@types/node": "^6.0.52",
-    "ng2-cookies": "^1.0.4",
-    "hammerjs": "^2.0.8",
+
     "reflect-metadata": "^0.1.8",
     "rxjs": "^5.0.1",
     "systemjs": "^0.19.41",
+    "core-js": "^2.4.1",
     "zone.js": "^0.7.2"
   },
   "devDependencies": {
-    "@types/core-js": "^0.9.35",
-    "@types/hammerjs": "^2.0.34",
     "@types/jasmine": "^2.5.38",
     "@types/node": "^6.0.53",
+
     "bower": "^1.8.0",
     "concurrently": "^3.1.0",
     "del": "2.2.0",
@@ -43,9 +40,6 @@
     "gulp-cssmin": "0.1.7",
     "gulp-uglify": "1.5.3",
     "rimraf": "2.5.2",
-    "ts-loader": "^1.3.2",
-    "ts-node": "^1.7.2",
-    "typescript": "^2.1.4",
-    "typings": "^2.0.0"
+    "typescript": "^2.1.4"
   }
 }
